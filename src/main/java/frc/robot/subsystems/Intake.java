@@ -11,12 +11,12 @@ import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  TalonFX TopMotor;
-  TalonFX BottomMotor;
+  TalonFX topMotor;
+  TalonFX bottomMotor;
 
   public Intake() {
-    TopMotor = new TalonFX(RobotMap.mapIntake.TOP_MOTOR_CAN);
-    BottomMotor = new TalonFX(RobotMap.mapIntake.BOTTOM_MOTOR_CAN);
+    topMotor = new TalonFX(RobotMap.mapIntake.TOP_MOTOR_CAN);
+    bottomMotor = new TalonFX(RobotMap.mapIntake.BOTTOM_MOTOR_CAN);
   }
 
   @Override
