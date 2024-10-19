@@ -7,8 +7,14 @@ package frc.robot;
 /** Contains all ports on our robot */
 public class RobotMap {
 
-    public static class mapControllers {
-        public static final int DRIVER_USB = 0;
-        public static final int OPERATOR_USB = 1;
-    }
+  public static class mapControllers {
+    public static final int DRIVER_USB = 0;
+    public static final int OPERATOR_USB = 1;
+  }
+
+  public static class mapHopper {
+    public static final int HOPPER_MOTOR = 30;
+    public static final int GAME_PIECE_HOPPER_DIO = 1;
+  }
+
 }
