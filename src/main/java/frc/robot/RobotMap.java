@@ -12,9 +12,13 @@ public class RobotMap {
     public static final int OPERATOR_USB = 1;
   }
 
-  public static class mapIntake {
 
     public static final int TOP_MOTOR_CAN = 20;
     public static final int BOTTOM_MOTOR_CAN = 21;
   }
+  public static class mapHopper {
+    public static final int HOPPER_MOTOR = 30;
+    public static final int GAME_PIECE_HOPPER_DIO = 1;
+  }
+
 }
