@@ -19,4 +19,15 @@ public class RobotMap {
     public static final int FRONT_LEFT_MOTOR = 2;
     public static final int BACK_LEFT_MOTOR = 3;
   }
+
+  public static class mapIntake {
+    public static final int TOP_MOTOR_CAN = 20;
+    public static final int BOTTOM_MOTOR_CAN = 21;
+  }
+
+  public static class mapHopper {
+    public static final int HOPPER_MOTOR = 30;
+    public static final int GAME_PIECE_HOPPER_DIO = 1;
+  }
+
 }
