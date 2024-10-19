@@ -13,6 +13,7 @@ public class RobotMap {
   }
 
   public static class mapDriveTrain {
+    // Motor ID's
     public static final int FRONT_RIGHT_MOTOR = 0;
     public static final int BACK_RIGHT_MOTOR = 1;
     public static final int FRONT_LEFT_MOTOR = 2;
