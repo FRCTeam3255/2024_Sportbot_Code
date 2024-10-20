@@ -23,6 +23,16 @@ public class Drivetrain extends SubsystemBase {
     backLeftMotor = new TalonFX(RobotMap.mapDriveTrain.BACK_LEFT_MOTOR);
   }
 
+  public void setRightSpeed(double velocity) {
+    frontRightMotor.set(velocity);
+    backRightMotor.set(velocity);
+  }
+
+  public void setLeftSpeed(double velocity) {
+    frontLeftMotor.set(velocity);
+    backLeftMotor.set(velocity);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
