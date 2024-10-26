@@ -29,6 +29,11 @@ public class Hopper extends SubsystemBase {
     HopperMotor.set(0);
   }
 
+  public boolean getGamePieceHopper() {
+
+    return HopperSensor.get();
+  }
+
   @Override
   public void periodic() {
 
