@@ -18,6 +18,24 @@ public class Shooter extends SubsystemBase {
     spinMotor = new TalonFX(11);
   }
 
+  public void setShooterVelocity(double velocity) {
+    // Replace with actual code
+  }
+
+  public double getShooterVelocity() {
+    // Replace with actual code
+    return 0; // This is temporary replace with actual code
+  }
+
+  public void setPropelVelocity(double velocity) {
+    // Replace with actual code
+  }
+
+  public double getPropelVelocity() {
+    // Replace with actual code
+    return 0; // This is temporary replace with actual code
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
