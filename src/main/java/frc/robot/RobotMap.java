@@ -33,7 +33,7 @@ public class RobotMap {
 
   public static class mapShooter {
     public static final int PROPEL_MOTOR_CAN = 10;
-    public static final int SPIN_MOTOR_CAN = 11;
+    public static final int SHOOT_MOTOR_CAN = 11;
   }
 
 }

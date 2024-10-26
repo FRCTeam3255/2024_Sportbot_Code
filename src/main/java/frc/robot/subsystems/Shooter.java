@@ -7,33 +7,32 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   TalonFX propelMotor;
-  TalonFX spinMotor;
+  TalonFX shootMotor;
 
   public Shooter() {
-    propelMotor = new TalonFX(10);
-    spinMotor = new TalonFX(11);
+    propelMotor = new TalonFX(RobotMap.mapShooter.PROPEL_MOTOR_CAN);
+    shootMotor = new TalonFX(RobotMap.mapShooter.SHOOT_MOTOR_CAN);
   }
 
   public void setShooterVelocity(double velocity) {
-    // Replace with actual code
+    shootMotor.set(velocity);
   }
 
   public double getShooterVelocity() {
-    // Replace with actual code
-    return 0; // This is temporary replace with actual code
+    return shootMotor.get();
   }
 
   public void setPropelVelocity(double velocity) {
-    // Replace with actual code
+    propelMotor.set(velocity);
   }
 
   public double getPropelVelocity() {
-    // Replace with actual code
-    return 0; // This is temporary replace with actual code
+    return propelMotor.get();
   }
 
   @Override
