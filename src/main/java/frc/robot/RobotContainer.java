@@ -10,17 +10,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public class RobotContainer {
-  private final SN_XboxController m_driverController = new SN_XboxController(0);
+  private final SN_XboxController m_driverController = new SN_XboxController(RobotMap.mapControllers.DRIVER_USB);
 
   public RobotContainer() {
     configureBindings();
   }
 
   private void configureBindings() {
-    m_driverController.btn_A.whileTrue(new SpinMotor(MyMotorMoverName, m_driverController.axis_RightTrigger, m_driverController.axis_LeftTrigger));
+    Drive(m_driverController.axis_LeftY, m_driverController.axis_RightX);
   }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
   }
 }
+
+// .whileTrue(new SpinMotor(MyMotorMoverName,
+// m_driverController.axis_RightTrigger, m_driverController.axis_LeftTrigger));

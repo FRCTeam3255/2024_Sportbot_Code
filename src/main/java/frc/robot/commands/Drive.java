@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 
@@ -11,6 +13,8 @@ public class Drive extends Command {
   /** Creates a new Drive. */
 
   Drivetrain globalDrivetrain;
+  DoubleSupplier forwardSpeed;
+  DoubleSupplier rotationSpeed;
 
   public Drive(Drivetrain passedDrivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,7 +27,10 @@ public class Drive extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    globalDrivetrain.setLeftSpeed(forwardSpeed.getAsDouble());
+    globalDrivetrain.setRightSpeed(forwardSpeed.getAsDouble());
+  }
 
   // Called once the command ends or is interrupted.
   @Override
