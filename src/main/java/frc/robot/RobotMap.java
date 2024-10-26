@@ -15,6 +15,7 @@ public class RobotMap {
   public static class mapHopper {
     public static final int HOPPER_MOTOR = 30;
     public static final int GAME_PIECE_HOPPER_DIO = 1;
+    public static final int FULL_HOPPER_DIO = 2;
   }
 
 }

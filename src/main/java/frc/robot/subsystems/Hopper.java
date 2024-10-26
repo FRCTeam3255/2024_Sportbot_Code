@@ -14,11 +14,12 @@ public class Hopper extends SubsystemBase {
   /** Creates a new Hopper. */
   TalonFX HopperMotor;
   DigitalInput HopperSensor;
+  DigitalInput FullHopperSensor;
 
   public Hopper() {
     HopperMotor = new TalonFX(RobotMap.mapHopper.HOPPER_MOTOR);
     HopperSensor = new DigitalInput(RobotMap.mapHopper.GAME_PIECE_HOPPER_DIO);
-
+    FullHopperSensor = new DigitalInput(RobotMap.mapHopper.FULL_HOPPER_DIO);
   }
 
   public void setHopperMotorSpeed(double speed) {
@@ -32,6 +33,11 @@ public class Hopper extends SubsystemBase {
   public boolean getGamePieceHopper() {
 
     return HopperSensor.get();
+  }
+
+  public boolean isHopperFull() {
+
+    return FullHopperSensor.get();
   }
 
   @Override
