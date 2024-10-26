@@ -9,12 +9,14 @@ import com.frcteam3255.joystick.SN_XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.states.IntakeGround;
+import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
-  private final SN_XboxController m_driverController = new SN_XboxController(0);
-  Intake sub_Intake = new Intake();
-  IntakeGround com_IntakeGround = new IntakeGround(sub_Intake);
+  private final SN_XboxController m_driverController = new SN_XboxController(1);
+  Intake subIntake = new Intake();
+  Hopper subHopper = new Hopper();
+  IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
 
   public RobotContainer() {
     configureBindings();
