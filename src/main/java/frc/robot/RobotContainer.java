@@ -15,9 +15,9 @@ import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
   private final SN_XboxController m_driverController = new SN_XboxController(1);
-  Intake subIntake = new Intake();
-  Hopper subHopper = new Hopper();
-  IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
+  private final Intake subIntake = new Intake();
+  private final Hopper subHopper = new Hopper();
+  private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
 
   public RobotContainer() {
     configureBindings();
