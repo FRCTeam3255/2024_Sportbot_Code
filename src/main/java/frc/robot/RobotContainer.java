@@ -4,15 +4,25 @@
 
 package frc.robot;
 
+import com.frcteam3255.joystick.SN_XboxController;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.commands.states.IntakeGround;
+import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
+  private final SN_XboxController m_driverController = new SN_XboxController(0);
+  Intake sub_Intake = new Intake();
+  IntakeGround com_IntakeGround = new IntakeGround(sub_Intake);
+
   public RobotContainer() {
     configureBindings();
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    m_driverController.btn_B.whileTrue(com_IntakeGround);
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
