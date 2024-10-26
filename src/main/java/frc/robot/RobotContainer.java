@@ -8,22 +8,22 @@ import com.frcteam3255.joystick.SN_XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.Drivetrain;
 
 public class RobotContainer {
   private final SN_XboxController m_driverController = new SN_XboxController(RobotMap.mapControllers.DRIVER_USB);
 
+  Drivetrain subDrivetrain = new Drivetrain();
+
   public RobotContainer() {
+    subDrivetrain.setDefaultCommand(new Drive(subDrivetrain, m_driverController.axis_LeftY, m_driverController.axis_RightX));
     configureBindings();
   }
 
-  private void configureBindings() {
-    Drive(m_driverController.axis_LeftY, m_driverController.axis_RightX);
-  }
+  private void configureBindings() {}
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
   }
 }
-
-// .whileTrue(new SpinMotor(MyMotorMoverName,
-// m_driverController.axis_RightTrigger, m_driverController.axis_LeftTrigger));

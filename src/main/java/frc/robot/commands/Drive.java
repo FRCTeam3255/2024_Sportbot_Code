@@ -13,12 +13,14 @@ public class Drive extends Command {
   /** Creates a new Drive. */
 
   Drivetrain globalDrivetrain;
-  DoubleSupplier forwardSpeed;
-  DoubleSupplier rotationSpeed;
+  DoubleSupplier globalForwardSpeed;
+  DoubleSupplier globalRotationSpeed;
 
-  public Drive(Drivetrain passedDrivetrain) {
+  public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalDrivetrain = passedDrivetrain;
+    globalForwardSpeed = passedForwardSpeed;
+    globalRotationSpeed = passedForwardSpeed;
   }
 
   // Called when the command is initially scheduled.
@@ -28,8 +30,8 @@ public class Drive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    globalDrivetrain.setLeftSpeed(forwardSpeed.getAsDouble());
-    globalDrivetrain.setRightSpeed(forwardSpeed.getAsDouble());
+    globalDrivetrain.setLeftSpeed(globalForwardSpeed.getAsDouble() + globalRotationSpeed.getAsDouble());
+    globalDrivetrain.setRightSpeed(globalForwardSpeed.getAsDouble() - globalRotationSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
