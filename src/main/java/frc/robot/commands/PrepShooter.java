@@ -20,7 +20,7 @@ public class PrepShooter extends Command {
   @Override
   public void initialize() {
     globalShooter.setPropelVelocity(0.6);
-    globalShooter.setShooterVelocity(0.8);
+    globalShooter.setSpiralMotorVelocity(0.8);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,7 +32,7 @@ public class PrepShooter extends Command {
   @Override
   public void end(boolean interrupted) {
     globalShooter.setPropelVelocity(0);
-    globalShooter.setShooterVelocity(0);
+    globalShooter.setSpiralMotorVelocity(0);
   }
 
   // Returns true when the command should end.

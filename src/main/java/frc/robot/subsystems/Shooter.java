@@ -12,19 +12,19 @@ import frc.robot.RobotMap;
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   TalonFX propelMotor;
-  TalonFX shootMotor;
+  TalonFX spiralMotor;
 
   public Shooter() {
     propelMotor = new TalonFX(RobotMap.mapShooter.PROPEL_MOTOR_CAN);
-    shootMotor = new TalonFX(RobotMap.mapShooter.SHOOT_MOTOR_CAN);
+    spiralMotor = new TalonFX(RobotMap.mapShooter.SPIRAL_MOTOR_CAN);
   }
 
-  public void setShooterVelocity(double velocity) {
-    shootMotor.set(velocity);
+  public void setSpiralMotorVelocity(double velocity) {
+    spiralMotor.set(velocity);
   }
 
-  public double getShooterVelocity() {
-    return shootMotor.get();
+  public double getSpiralMotorVelocity() {
+    return spiralMotor.get();
   }
 
   public void setPropelVelocity(double velocity) {
