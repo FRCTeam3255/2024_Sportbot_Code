@@ -38,7 +38,7 @@ public class RobotMap {
 
   public static class mapStager {
     public static final int CONVEYOR_MOTOR_CAN = 40;
-    public static final int IS_GP_STAGED_DIO = 41;
+    public static final int IS_GP_STAGED_DIO = 0;
   }
 
 }
