@@ -5,27 +5,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Stager;
 import frc.robot.subsystems.Shooter;
 
-public class PrepShooter extends Command {
-  /** Creates a new PrepShooter. */
+public class Shoot extends Command {
+  /** Creates a new Shoot. */
+  Stager globalStager;
   Shooter globalShooter;
 
-  public PrepShooter(Shooter passedShooter) {
+  public Shoot(Stager passedStager, Shooter passedShooter) {
     // Use addRequirements() here to declare subsystem dependencies.
+    globalStager = passedStager;
     globalShooter = passedShooter;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalShooter.setPropelMotorVelocity(0.6);
-    globalShooter.setSpiralMotorVelocity(0.8);
+    // The speed need to change to a real number.
+    if ((globalShooter.getPropelMotorVelocity() > 1) && (globalShooter.getSpiralMotorVelocity() > 1)) {
+      globalStager.setConveyorMotorVelocity(0.3);
+    } else {
+      globalStager.setConveyorMotorVelocity(0);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
   }
 
   // Called once the command ends or is interrupted.

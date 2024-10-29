@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.StageGP;
 import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Hopper;
@@ -26,6 +27,7 @@ public class RobotContainer {
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final StageGP com_StageGP = new StageGP(subStager);
+  private final Shoot com_Shoot = new Shoot(subStager, subShooter);
 
   public RobotContainer() {
     configureBindings();
@@ -35,8 +37,9 @@ public class RobotContainer {
   private void configureBindings() {
     m_driverController.btn_B.whileTrue(com_IntakeGround);
     m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper));
-    m_driverController.btn_X.onTrue(com_PrepShooter);
+    m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
+    m_driverController.btn_Y.onTrue(com_Shoot);
   }
 
   public Command getAutonomousCommand() {
