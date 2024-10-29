@@ -20,7 +20,9 @@ public class Drive extends Command {
     // Use addRequirements() here to declare subsystem dependencies.
     globalDrivetrain = passedDrivetrain;
     globalForwardSpeed = passedForwardSpeed;
-    globalRotationSpeed = passedForwardSpeed;
+    globalRotationSpeed = passedRotationSpeed;
+
+    addRequirements(globalDrivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -30,8 +32,7 @@ public class Drive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    globalDrivetrain.setLeftSpeed(globalForwardSpeed.getAsDouble() + globalRotationSpeed.getAsDouble());
-    globalDrivetrain.setRightSpeed(globalForwardSpeed.getAsDouble() - globalRotationSpeed.getAsDouble());
+    globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble() - globalRotationSpeed.getAsDouble(), globalForwardSpeed.getAsDouble() + globalRotationSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

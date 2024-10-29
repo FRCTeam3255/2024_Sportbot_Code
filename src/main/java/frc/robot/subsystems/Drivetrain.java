@@ -11,10 +11,10 @@ import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  TalonFX frontRightMotor;
-  TalonFX frontLeftMotor;
-  TalonFX backRightMotor;
-  TalonFX backLeftMotor;
+  private TalonFX frontRightMotor;
+  private TalonFX frontLeftMotor;
+  private TalonFX backRightMotor;
+  private TalonFX backLeftMotor;
 
   public Drivetrain() {
     frontRightMotor = new TalonFX(RobotMap.mapDriveTrain.FRONT_RIGHT_MOTOR);
@@ -23,14 +23,20 @@ public class Drivetrain extends SubsystemBase {
     backLeftMotor = new TalonFX(RobotMap.mapDriveTrain.BACK_LEFT_MOTOR);
   }
 
-  public void setRightSpeed(double velocity) {
-    frontRightMotor.set(velocity);
-    backRightMotor.set(velocity);
-  }
+  /**
+   * Sets the velocity of the drivetrain motors.
+   * 
+   * @param rightVelocity The velocity to set for the right side of the drivetrain.
+   * @param leftVelocity The velocity to set for the left side of the drivetrain.
+   */
+  public void setDrivetrainSpeed(double rightVelocity, double leftVelocity) {
+    // Set right velocity
+    frontRightMotor.set(rightVelocity);
+    backRightMotor.set(rightVelocity);
 
-  public void setLeftSpeed(double velocity) {
-    frontLeftMotor.set(velocity);
-    backLeftMotor.set(velocity);
+    // Set left velocity
+    frontLeftMotor.set(leftVelocity);
+    backLeftMotor.set(leftVelocity);
   }
 
   @Override
