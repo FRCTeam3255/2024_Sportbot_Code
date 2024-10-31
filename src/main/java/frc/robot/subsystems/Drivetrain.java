@@ -28,15 +28,16 @@ public class Drivetrain extends SubsystemBase {
    * 
    * @param rightVelocity The velocity to set for the right side of the drivetrain.
    * @param leftVelocity The velocity to set for the left side of the drivetrain.
+   * @param rotationSpeed The rotation speed to apply to the drivetrain.
    */
-  public void setDrivetrainSpeed(double rightVelocity, double leftVelocity) {
+  public void setDrivetrainSpeed(double rightVelocity, double leftVelocity, double rotationSpeed) {
     // Set right velocity
-    frontRightMotor.set(rightVelocity);
-    backRightMotor.set(rightVelocity);
+    frontRightMotor.set(rightVelocity - rotationSpeed);
+    backRightMotor.set(rightVelocity - rotationSpeed);
 
     // Set left velocity
-    frontLeftMotor.set(leftVelocity);
-    backLeftMotor.set(leftVelocity);
+    frontLeftMotor.set(leftVelocity + rotationSpeed);
+    backLeftMotor.set(leftVelocity + rotationSpeed);
   }
 
   @Override
@@ -44,3 +45,4 @@ public class Drivetrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 }
+ 

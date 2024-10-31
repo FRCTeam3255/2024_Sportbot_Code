@@ -32,7 +32,7 @@ public class Drive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble() - globalRotationSpeed.getAsDouble(), globalForwardSpeed.getAsDouble() + globalRotationSpeed.getAsDouble());
+    globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble(), globalForwardSpeed.getAsDouble(), globalRotationSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
