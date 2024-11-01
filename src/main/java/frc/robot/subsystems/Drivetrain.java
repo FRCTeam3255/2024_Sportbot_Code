@@ -26,18 +26,17 @@ public class Drivetrain extends SubsystemBase {
   /**
    * Sets the velocity of the drivetrain motors.
    * 
-   * @param rightVelocity The velocity to set for the right side of the drivetrain.
-   * @param leftVelocity The velocity to set for the left side of the drivetrain.
+   * @param forwardVelocity The velocity to set for the forward movement of the drivetrain.
    * @param rotationSpeed The rotation speed to apply to the drivetrain.
    */
-  public void setDrivetrainSpeed(double rightVelocity, double leftVelocity, double rotationSpeed) {
+  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed) {
     // Set right velocity
-    frontRightMotor.set(rightVelocity - rotationSpeed);
-    backRightMotor.set(rightVelocity - rotationSpeed);
+    frontRightMotor.set(forwardVelocity - rotationSpeed);
+    backRightMotor.set(forwardVelocity - rotationSpeed);
 
     // Set left velocity
-    frontLeftMotor.set(leftVelocity + rotationSpeed);
-    backLeftMotor.set(leftVelocity + rotationSpeed);
+    frontLeftMotor.set(forwardVelocity + rotationSpeed);
+    backLeftMotor.set(forwardVelocity + rotationSpeed);
   }
 
   @Override
