@@ -12,6 +12,12 @@ public class RobotMap {
     public static final int OPERATOR_USB = 1;
   }
 
+  public static class mapHopper {
+    public static final int HOPPER_MOTOR = 30;
+    public static final int GAME_PIECE_HOPPER_DIO = 1;
+    public static final int FULL_HOPPER_DIO = 2;
+  }
+
   public static class mapDriveTrain {
     // Motor ID's
     public static final int FRONT_RIGHT_MOTOR = 0;
@@ -25,9 +31,14 @@ public class RobotMap {
     public static final int BOTTOM_MOTOR_CAN = 21;
   }
 
-  public static class mapHopper {
-    public static final int HOPPER_MOTOR = 30;
-    public static final int GAME_PIECE_HOPPER_DIO = 1;
+  public static class mapShooter {
+    public static final int PROPEL_MOTOR_CAN = 10;
+    public static final int SPIRAL_MOTOR_CAN = 11;
+  }
+
+  public static class mapStager {
+    public static final int CONVEYOR_MOTOR_CAN = 40;
+    public static final int IS_GP_STAGED_DIO = 0;
   }
 
 }

@@ -19,6 +19,14 @@ public class Intake extends SubsystemBase {
     bottomMotor = new TalonFX(RobotMap.mapIntake.BOTTOM_MOTOR_CAN);
   }
 
+  public void setTopMotorVelocity(double velocity) {
+    topMotor.set(velocity);
+  }
+
+  public void setBottomMotorVelocity(double velocity) {
+    topMotor.set(velocity);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
