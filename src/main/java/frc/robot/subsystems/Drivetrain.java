@@ -11,10 +11,10 @@ import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  TalonFX frontRightMotor;
-  TalonFX frontLeftMotor;
-  TalonFX backRightMotor;
-  TalonFX backLeftMotor;
+  private TalonFX frontRightMotor;
+  private TalonFX frontLeftMotor;
+  private TalonFX backRightMotor;
+  private TalonFX backLeftMotor;
 
   public Drivetrain() {
     frontRightMotor = new TalonFX(RobotMap.mapDriveTrain.FRONT_RIGHT_MOTOR);
@@ -23,8 +23,25 @@ public class Drivetrain extends SubsystemBase {
     backLeftMotor = new TalonFX(RobotMap.mapDriveTrain.BACK_LEFT_MOTOR);
   }
 
+  /**
+   * Sets the velocity of the drivetrain motors.
+   * 
+   * @param forwardVelocity The velocity to set for the forward movement of the drivetrain.
+   * @param rotationSpeed The rotation speed to apply to the drivetrain.
+   */
+  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed) {
+    // Set right velocity
+    frontRightMotor.set(forwardVelocity - rotationSpeed);
+    backRightMotor.set(forwardVelocity - rotationSpeed);
+
+    // Set left velocity
+    frontLeftMotor.set(forwardVelocity + rotationSpeed);
+    backLeftMotor.set(forwardVelocity + rotationSpeed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
 }
+ 
