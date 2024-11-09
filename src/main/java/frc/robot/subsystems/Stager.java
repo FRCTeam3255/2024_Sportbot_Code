@@ -20,11 +20,11 @@ public class Stager extends SubsystemBase {
     hasGP = new DigitalInput(RobotMap.mapStager.HAS_GP_DIO);
   }
 
-  public void setConveyorMotorVelocity(double velocity) {
+  public void setStagerMotorVelocity(double velocity) {
     stagerMotor.set(velocity);
   }
 
-  public void setConveyorMotorVelocityNuetralOutput() {
+  public void setStagerMotorVelocityNuetralOutput() {
     stagerMotor.set(0);
   }
 
