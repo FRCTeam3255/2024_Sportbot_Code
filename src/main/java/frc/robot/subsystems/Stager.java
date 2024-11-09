@@ -16,16 +16,7 @@ public class Stager extends SubsystemBase {
   DigitalInput isGPStaged;
 
   public Stager() {
-    conveyorMotor = new TalonFX(RobotMap.mapStager.CONVEYOR_MOTOR_CAN);
     isGPStaged = new DigitalInput(RobotMap.mapStager.IS_GP_STAGED_DIO);
-  }
-
-  public void setConveyorMotorVelocity(double velocity) {
-    conveyorMotor.set(velocity);
-  }
-
-  public void setConveyorMotorVelocityNuetralOutput() {
-    conveyorMotor.set(0);
   }
 
   public boolean getIsGPStaged() {

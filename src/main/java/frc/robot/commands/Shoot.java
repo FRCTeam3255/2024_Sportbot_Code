@@ -24,9 +24,9 @@ public class Shoot extends Command {
   public void initialize() {
     // The speed need to change to a real number.
     if ((globalShooter.getPropelMotorVelocity() > 1) && (globalShooter.getSpiralMotorVelocity() > 1)) {
-      globalStager.setConveyorMotorVelocity(0.3);
+
     } else {
-      globalStager.setConveyorMotorVelocity(0);
+
     }
   }
 
