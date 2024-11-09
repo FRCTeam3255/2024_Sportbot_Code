@@ -25,7 +25,7 @@ public class StageGP extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (globalStager.getIsGPStaged()) {
+    if (globalStager.getHasGP()) {
       globalStager.setConveyorMotorVelocity(0);
     } else {
       globalStager.setConveyorMotorVelocity(0.3);
