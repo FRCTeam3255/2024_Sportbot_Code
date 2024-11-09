@@ -9,6 +9,7 @@ import com.frcteam3255.joystick.SN_XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
+import frc.robot.commands.EjectGP;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
@@ -27,7 +28,8 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
-  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_LeftY, m_driverController.axis_RightX);
+  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_LeftY,
+      m_driverController.axis_RightX);
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final StageGP com_StageGP = new StageGP(subStager);
@@ -43,7 +45,11 @@ public class RobotContainer {
     m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper));
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
+
+    m_driverController.btn_RightBumper.whileTrue(new EjectGP(subIntake, subHopper));
+
     m_driverController.btn_Y.onTrue(com_Shoot);
+
   }
 
   public Command getAutonomousCommand() {
