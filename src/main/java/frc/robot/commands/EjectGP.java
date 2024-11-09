@@ -23,8 +23,7 @@ public class EjectGP extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalIntake.setTopMotorVelocity(-0.5);
-    globalIntake.setBottomMotorVelocity(-0.5);
+    globalIntake.setIntakeVelocity(-0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,7 +35,7 @@ public class EjectGP extends Command {
   @Override
   public void end(boolean interrupted) {
     globalHopper.setHopperMotorNuetralOutput();
-    globalIntake.setIntakeNuetralOutput(0);
+    globalIntake.setIntakeNuetralOutput();
   }
 
   // Returns true when the command should end.
