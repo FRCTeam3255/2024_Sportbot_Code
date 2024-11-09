@@ -4,23 +4,41 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  TalonFX frontRightMotor;
-  TalonFX frontLeftMotor;
-  TalonFX backRightMotor;
-  TalonFX backLeftMotor;
+  private CANSparkMax frontRightMotor;
+  private CANSparkMax frontLeftMotor;
+  private CANSparkMax backRightMotor;
+  private CANSparkMax backLeftMotor;
 
   public Drivetrain() {
-    frontRightMotor = new TalonFX(RobotMap.mapDriveTrain.FRONT_RIGHT_MOTOR);
-    backRightMotor = new TalonFX(RobotMap.mapDriveTrain.BACK_RIGHT_MOTOR);
-    frontLeftMotor = new TalonFX(RobotMap.mapDriveTrain.FRONT_LEFT_MOTOR);
-    backLeftMotor = new TalonFX(RobotMap.mapDriveTrain.BACK_LEFT_MOTOR);
+    frontRightMotor = new CANSparkMax(RobotMap.mapDriveTrain.FRONT_RIGHT_MOTOR, MotorType.kBrushless);
+    backRightMotor = new CANSparkMax(RobotMap.mapDriveTrain.BACK_RIGHT_MOTOR, MotorType.kBrushless);
+    frontLeftMotor = new CANSparkMax(RobotMap.mapDriveTrain.FRONT_LEFT_MOTOR, MotorType.kBrushless);
+    backLeftMotor = new CANSparkMax(RobotMap.mapDriveTrain.BACK_LEFT_MOTOR, MotorType.kBrushless);
+  }
+
+  /**
+   * Sets the velocity of the drivetrain motors.
+   * 
+   * @param forwardVelocity The velocity to set for the forward movement of the
+   *                        drivetrain.
+   * @param rotationSpeed   The rotation speed to apply to the drivetrain.
+   */
+  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed) {
+    // Set right velocity
+    frontRightMotor.set(forwardVelocity - rotationSpeed);
+    backRightMotor.set(forwardVelocity - rotationSpeed);
+
+    // Set left velocity
+    frontLeftMotor.set(forwardVelocity + rotationSpeed);
+    backLeftMotor.set(forwardVelocity + rotationSpeed);
   }
 
   @Override
