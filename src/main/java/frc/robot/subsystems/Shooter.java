@@ -27,11 +27,11 @@ public class Shooter extends SubsystemBase {
     return spiralMotor.get();
   }
 
-  public void setPropelVelocity(double velocity) {
+  public void setPropelMotorVelocity(double velocity) {
     propelMotor.set(velocity);
   }
 
-  public double getPropelVelocity() {
+  public double getPropelMotorVelocity() {
     return propelMotor.get();
   }
 
