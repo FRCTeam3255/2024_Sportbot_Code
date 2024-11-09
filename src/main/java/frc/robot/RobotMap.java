@@ -27,8 +27,7 @@ public class RobotMap {
   }
 
   public static class mapIntake {
-    public static final int TOP_MOTOR_CAN = 20;
-    public static final int BOTTOM_MOTOR_CAN = 21;
+    public static final int INTAKE_MOTOR_CAN = 20;
   }
 
   public static class mapShooter {

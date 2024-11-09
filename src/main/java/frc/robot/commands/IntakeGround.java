@@ -22,8 +22,7 @@ public class IntakeGround extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalIntake.setTopMotorVelocity(0.5);
-    globalIntake.setBottomMotorVelocity(0.5);
+    globalIntake.setIntakeVelocity(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -31,19 +30,16 @@ public class IntakeGround extends Command {
   public void execute() {
     // if hopper is full
     if (globalHopper.isHopperFull()) {
-      globalIntake.setTopMotorVelocity(0);
-      globalIntake.setBottomMotorVelocity(0);
+      globalIntake.setIntakeVelocity(0);
     } else {
-      globalIntake.setTopMotorVelocity(0.5);
-      globalIntake.setBottomMotorVelocity(0.5);
+      globalIntake.setIntakeVelocity(0.5);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalIntake.setTopMotorVelocity(0);
-    globalIntake.setBottomMotorVelocity(0);
+    globalIntake.setIntakeNuetralOutput();
   }
 
   // Returns true when the command should end.
