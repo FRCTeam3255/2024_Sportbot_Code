@@ -19,23 +19,23 @@ public class StageGP extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalStager.setConveyorMotorVelocity(0.3);
+    globalStager.setStagerMotorVelocity(0.3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (globalStager.getHasGP()) {
-      globalStager.setConveyorMotorVelocity(0);
+      globalStager.setStagerMotorVelocity(0);
     } else {
-      globalStager.setConveyorMotorVelocity(0.3);
+      globalStager.setStagerMotorVelocity(0.3);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalStager.setConveyorMotorVelocity(0);
+    globalStager.setStagerMotorVelocity(0);
   }
 
   // Returns true when the command should end.

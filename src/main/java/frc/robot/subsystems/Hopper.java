@@ -23,11 +23,11 @@ public class Hopper extends SubsystemBase {
 
   }
 
-  public void setHopperMotorSpeed(double speed) {
+  public void setOrientationMotorSpeed(double speed) {
     orientationMotor.set(speed);
   }
 
-  public void setHopperMotorNuetralOutput() {
+  public void setOrientationMotorNuetralOutput() {
     orientationMotor.set(0);
   }
 
