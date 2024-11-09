@@ -12,24 +12,24 @@ import frc.robot.RobotMap;
 
 public class Stager extends SubsystemBase {
   /** Creates a new Stager. */
-  TalonFX conveyorMotor;
-  DigitalInput isGPStaged;
+  TalonFX stagerMotor;
+  DigitalInput hasGP;
 
   public Stager() {
-    conveyorMotor = new TalonFX(RobotMap.mapStager.CONVEYOR_MOTOR_CAN);
-    isGPStaged = new DigitalInput(RobotMap.mapStager.IS_GP_STAGED_DIO);
+    stagerMotor = new TalonFX(RobotMap.mapStager.STAGER_MOTOR_CAN);
+    hasGP = new DigitalInput(RobotMap.mapStager.HAS_GP_DIO);
   }
 
   public void setConveyorMotorVelocity(double velocity) {
-    conveyorMotor.set(velocity);
+    stagerMotor.set(velocity);
   }
 
   public void setConveyorMotorVelocityNuetralOutput() {
-    conveyorMotor.set(0);
+    stagerMotor.set(0);
   }
 
-  public boolean getIsGPStaged() {
-    return isGPStaged.get();
+  public boolean getHasGP() {
+    return hasGP.get();
   }
 
   @Override
