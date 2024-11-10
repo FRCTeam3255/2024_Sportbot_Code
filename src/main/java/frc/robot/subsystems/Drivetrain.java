@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
@@ -36,8 +37,8 @@ public class Drivetrain extends SubsystemBase {
   public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed, boolean slowModeActivated) {
     // Divide speed in half if slow mode is activated
     if (slowModeActivated) {
-      forwardVelocity = forwardVelocity * 0.5;
-      rotationSpeed = rotationSpeed * 0.5;
+      forwardVelocity = forwardVelocity * Constants.constDrivetrain.SLOW_MODE_MULTIPLIER;
+      rotationSpeed = rotationSpeed * Constants.constDrivetrain.SLOW_MODE_MULTIPLIER;
     }
 
     // Set right velocity
