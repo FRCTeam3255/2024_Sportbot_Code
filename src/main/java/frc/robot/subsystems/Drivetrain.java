@@ -30,12 +30,19 @@ public class Drivetrain extends SubsystemBase {
    * @param forwardVelocity The velocity to set for the forward movement of the
    *                        drivetrain.
    * @param rotationSpeed   The rotation speed to apply to the drivetrain.
+   * @param slowModeActivated A boolean indicating whether slow mode is activated or not.
+   *                          If true, the speed will be divided by 2.
    */
-  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed) {
+  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed, boolean slowModeActivated) {
+    // Divide speed in half if slow mode is activated
+    if (slowModeActivated) {
+      forwardVelocity = forwardVelocity * 0.5;
+      rotationSpeed = rotationSpeed * 0.5;
+    }
+
     // Set right velocity
     frontRightMotor.set(forwardVelocity - rotationSpeed);
     backRightMotor.set(forwardVelocity - rotationSpeed);
-
     // Set left velocity
     frontLeftMotor.set(forwardVelocity + rotationSpeed);
     backLeftMotor.set(forwardVelocity + rotationSpeed);
