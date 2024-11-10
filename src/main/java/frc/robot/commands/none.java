@@ -15,6 +15,7 @@ public class none extends Command {
   Intake subIntake;
   Shooter subShooter;
   Stager subStager;
+
   /** Creates a new none. */
   public none(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,16 +28,18 @@ public class none extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    subHopper.setOrientationMotorSpeed(0);
+    subIntake.setIntakeVelocity(0);
+    subStager.setStagerMotorVelocity(0);
+    subShooter.setSpiralMotorVelocity(0);
+    subShooter.setPropelMotorVelocity(0);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subHopper.setHopperMotorSpeed(0);
-    subIntake.setTopMotorVelocity(0);
-    subStager.setConveyorMotorVelocity(0);
-    subShooter.setSpiralMotorVelocity(0);
-    subShooter.setPropelMotorVelocity(0);
+
   }
 
   // Called once the command ends or is interrupted.
@@ -47,6 +50,6 @@ public class none extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
