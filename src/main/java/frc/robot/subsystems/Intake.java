@@ -11,26 +11,18 @@ import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  TalonFX topMotor;
-  TalonFX bottomMotor;
+  TalonFX intakeMotor;
 
   public Intake() {
-    topMotor = new TalonFX(RobotMap.mapIntake.TOP_MOTOR_CAN);
-    bottomMotor = new TalonFX(RobotMap.mapIntake.BOTTOM_MOTOR_CAN);
+    intakeMotor = new TalonFX(RobotMap.mapIntake.INTAKE_MOTOR_CAN);
   }
 
-  public void setTopMotorVelocity(double velocity) {
-    topMotor.set(velocity);
+  public void setIntakeVelocity(double velocity) {
+    intakeMotor.set(velocity);
   }
 
-  public void setBottomMotorVelocity(double velocity) {
-    topMotor.set(velocity);
-  }
-
-  public void setIntakeNuetralOutput(double velocity) {
-    topMotor.set(0);
-    bottomMotor.set(0);
-
+  public void setIntakeNuetralOutput() {
+    intakeMotor.set(0);
   }
 
   @Override

@@ -22,16 +22,16 @@ public class intakeHopper extends Command {
   @Override
   public void initialize() {
 
-    subHopper.setHopperMotorSpeed(.5);
+    subHopper.setOrientationMotorSpeed(.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (subHopper.isHopperFull()) {
-      subHopper.setHopperMotorNuetralOutput();
+      subHopper.setOrientationMotorNuetralOutput();
     } else {
-      subHopper.setHopperMotorSpeed(.5);
+      subHopper.setOrientationMotorSpeed(.5);
     }
 
   }
@@ -39,7 +39,7 @@ public class intakeHopper extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    subHopper.setHopperMotorNuetralOutput();
+    subHopper.setOrientationMotorNuetralOutput();
   }
 
   // Returns true when the command should end.
