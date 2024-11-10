@@ -18,12 +18,12 @@ public class Drive extends Command {
   DoubleSupplier globalRotationSpeed;
   Trigger globalSlowMode;
 
-  public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed, Trigger btn_LeftBumper) {
+  public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed, Trigger passedSlowMode) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalDrivetrain = passedDrivetrain;
     globalForwardSpeed = passedForwardSpeed;
     globalRotationSpeed = passedRotationSpeed;
-    globalSlowMode = btn_LeftBumper;
+    globalSlowMode = passedSlowMode;
 
     addRequirements(globalDrivetrain);
   }
