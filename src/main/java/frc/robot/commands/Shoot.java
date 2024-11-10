@@ -23,7 +23,7 @@ public class Shoot extends Command {
   @Override
   public void initialize() {
     // The speed need to change to a real number.
-    if ((globalShooter.getPropelMotorVelocity() > 1) && (globalShooter.getSpiralMotorVelocity() > 1)) {
+    if ((globalShooter.getPropelMotorVelocity() >= 0.6) && (globalShooter.getSpiralMotorVelocity() >= 0.8)) {
       globalStager.setStagerMotorVelocity(0.3);
     } else {
       globalStager.setStagerMotorVelocity(0);
