@@ -5,42 +5,51 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 
-public class StageGP extends Command {
-  /** Creates a new StageGP. */
-  Stager globalStager;
+public class none extends Command {
+  Hopper subHopper;
+  Intake subIntake;
+  Shooter subShooter;
+  Stager subStager;
 
-  public StageGP(Stager passedStager) {
+  /** Creates a new none. */
+  public none(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
     // Use addRequirements() here to declare subsystem dependencies.
-    globalStager = passedStager;
+    subHopper = passedHopper;
+    subIntake = passedIntake;
+    subShooter = passedShooter;
+    subStager = passedStager;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalStager.setStagerMotorVelocity(0.3);
+    subHopper.setOrientationMotorSpeed(0);
+    subIntake.setIntakeVelocity(0);
+    subStager.setStagerMotorVelocity(0);
+    subShooter.setSpiralMotorVelocity(0);
+    subShooter.setPropelMotorVelocity(0);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (globalStager.getHasGP()) {
-      globalStager.setStagerMotorVelocity(0);
-    } else {
-      globalStager.setStagerMotorVelocity(0.3);
-    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalStager.setStagerMotorVelocity(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

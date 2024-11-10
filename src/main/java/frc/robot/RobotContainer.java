@@ -13,7 +13,7 @@ import frc.robot.commands.EjectGP;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.StageGP;
+import frc.robot.commands.HasGP;
 import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
@@ -32,7 +32,7 @@ public class RobotContainer {
       m_driverController.axis_RightX);
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
-  private final StageGP com_StageGP = new StageGP(subStager);
+  private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
 
   public RobotContainer() {
