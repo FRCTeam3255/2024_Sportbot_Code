@@ -7,6 +7,7 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends Command {
@@ -15,12 +16,14 @@ public class Drive extends Command {
   Drivetrain globalDrivetrain;
   DoubleSupplier globalForwardSpeed;
   DoubleSupplier globalRotationSpeed;
+  Trigger globalSlowMode;
 
-  public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed) {
+  public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed, Trigger btn_LeftBumper) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalDrivetrain = passedDrivetrain;
     globalForwardSpeed = passedForwardSpeed;
     globalRotationSpeed = passedRotationSpeed;
+    globalSlowMode = btn_LeftBumper;
 
     addRequirements(globalDrivetrain);
   }
@@ -32,7 +35,7 @@ public class Drive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble(), globalRotationSpeed.getAsDouble());
+    globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble(), globalRotationSpeed.getAsDouble(), globalSlowMode.getAsBoolean());
   }
 
   // Called once the command ends or is interrupted.

@@ -28,8 +28,7 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
-  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_LeftY,
-      m_driverController.axis_RightX);
+  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX, m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subStager);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final HasGP com_StageGP = new HasGP(subStager);
