@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+// import com.ctre.phoenix6.hardware.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,20 +14,20 @@ import frc.robot.RobotMap;
 
 public class Stager extends SubsystemBase {
   /** Creates a new Stager. */
-  TalonFX stagerMotor;
+  TalonSRX stagerMotor;
   DigitalInput hasGP;
 
   public Stager() {
-    stagerMotor = new TalonFX(RobotMap.mapStager.STAGER_MOTOR_CAN);
+    stagerMotor = new TalonSRX(RobotMap.mapStager.STAGER_MOTOR_CAN);
     hasGP = new DigitalInput(RobotMap.mapStager.HAS_GP_DIO);
   }
 
   public void setStagerMotorVelocity(double velocity) {
-    stagerMotor.set(velocity);
+    stagerMotor.set(ControlMode.PercentOutput, velocity);
   }
 
   public void setStagerMotorVelocityNuetralOutput() {
-    stagerMotor.set(0);
+    stagerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean getHasGP() {
