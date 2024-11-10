@@ -6,15 +6,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Stager;
 
 public class intakeHopper extends Command {
 
   Hopper subHopper;
+  Stager subStager;
 
   /** Creates a new intakeHopper. */
-  public intakeHopper(Hopper subHopper) {
+  public intakeHopper(Hopper subHopper, Stager subStager) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.subHopper = subHopper;
+    this.subStager = subStager;
 
   }
 
@@ -28,7 +31,7 @@ public class intakeHopper extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (subHopper.isHopperFull()) {
+    if (subStager.getHasGP()) {
       subHopper.setOrientationMotorNuetralOutput();
     } else {
       subHopper.setOrientationMotorSpeed(.5);

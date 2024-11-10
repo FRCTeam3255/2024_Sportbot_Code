@@ -14,12 +14,10 @@ public class Hopper extends SubsystemBase {
   /** Creates a new Hopper. */
   TalonFX orientationMotor;
   DigitalInput isGPDetected;
-  DigitalInput isHopperFull;
 
   public Hopper() {
     orientationMotor = new TalonFX(RobotMap.mapHopper.ORIENTATION_MOTOR);
     isGPDetected = new DigitalInput(RobotMap.mapHopper.IS_GP_DETECTED_DIO);
-    isHopperFull = new DigitalInput(RobotMap.mapHopper.IS_HOPPER_FULL_DIO);
 
   }
 
@@ -34,11 +32,6 @@ public class Hopper extends SubsystemBase {
   public boolean getGamePieceHopper() {
 
     return isGPDetected.get();
-  }
-
-  public boolean isHopperFull() {
-
-    return isHopperFull.get();
   }
 
   @Override
