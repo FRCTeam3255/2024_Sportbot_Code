@@ -31,11 +31,16 @@ public class Drivetrain extends SubsystemBase {
    *                        drivetrain.
    * @param rotationSpeed   The rotation speed to apply to the drivetrain.
    */
-  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed) {
+  public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed, boolean leftBumperDown) {
+    // Divide speed in half if slow mode is activated
+    if (leftBumperDown) {
+      forwardVelocity = forwardVelocity * 0.5;
+      rotationSpeed = rotationSpeed * 0.5;
+    }
+
     // Set right velocity
     frontRightMotor.set(forwardVelocity - rotationSpeed);
     backRightMotor.set(forwardVelocity - rotationSpeed);
-
     // Set left velocity
     frontLeftMotor.set(forwardVelocity + rotationSpeed);
     backLeftMotor.set(forwardVelocity + rotationSpeed);
