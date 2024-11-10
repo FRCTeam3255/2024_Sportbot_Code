@@ -7,6 +7,6 @@ package frc.robot;
 /** Add your docs here. */
 public class Constants {
     public static class constDrivetrain {
-
+      public static final double SLOW_MODE_MULTIPLIER = 0.5;
     }
 }
