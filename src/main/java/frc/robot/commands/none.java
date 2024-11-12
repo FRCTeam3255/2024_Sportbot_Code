@@ -33,7 +33,6 @@ public class none extends Command {
     subStager.setStagerMotorVelocity(0);
     subShooter.setSpiralMotorVelocity(0);
     subShooter.setPropelMotorVelocity(0);
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
