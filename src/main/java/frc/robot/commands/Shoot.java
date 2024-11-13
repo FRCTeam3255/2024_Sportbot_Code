@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
 public class Shoot extends Command {
@@ -23,8 +24,8 @@ public class Shoot extends Command {
   @Override
   public void initialize() {
     // The speed need to change to a real number.
-    if ((globalShooter.getPropelMotorVelocity() >= 0.6) && (globalShooter.getSpiralMotorVelocity() >= 0.8)) {
-      globalStager.setStagerMotorVelocity(0.3);
+    if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY) && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
+      globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
     } else {
       globalStager.setStagerMotorVelocity(0);
     }

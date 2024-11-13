@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Stager;
 
@@ -24,8 +25,7 @@ public class intakeHopper extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    subHopper.setOrientationMotorSpeed(.5);
+    subHopper.setOrientationMotorSpeed(Constants.constHopper.HOPPER_ORIENTATION_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +34,7 @@ public class intakeHopper extends Command {
     if (subStager.getHasGP()) {
       subHopper.setOrientationMotorNuetralOutput();
     } else {
-      subHopper.setOrientationMotorSpeed(.5);
+      subHopper.setOrientationMotorSpeed(Constants.constHopper.HOPPER_ORIENTATION_SPEED);
     }
 
   }
