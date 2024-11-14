@@ -25,8 +25,9 @@ public class Shoot extends Command {
     // The speed need to change to a real number.
     if ((globalShooter.getPropelMotorVelocity() > 1) && (globalShooter.getSpiralMotorVelocity() > 1)) {
       globalStager.setStagerMotorVelocity(0.3);
+      globalStager.setTopStagerMotorVelocity(0.3);
     } else {
-      globalStager.setStagerMotorVelocity(0);
+      globalStager.setStagerMotorVelocityNuetralOutput();
     }
   }
 
@@ -39,8 +40,7 @@ public class Shoot extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalShooter.setPropelMotorVelocity(0);
-    globalShooter.setSpiralMotorVelocity(0);
+    globalStager.setStagerMotorVelocityNuetralOutput();
   }
 
   // Returns true when the command should end.
