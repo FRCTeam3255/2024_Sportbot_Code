@@ -41,9 +41,11 @@ public class RobotContainer {
 
   private void configureBindings() {
     m_driverController.btn_B.whileTrue(com_IntakeGround);
-    m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper, subStager));
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
+    if (m_driverController.axis_LeftTrigger.getAsDouble() > 0.5) {
+      new intakeHopper(subHopper, subStager);
+    }
 
     m_driverController.btn_RightBumper.whileTrue(new EjectGP(subIntake, subHopper));
 
