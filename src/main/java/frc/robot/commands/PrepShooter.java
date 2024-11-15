@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
 public class PrepShooter extends Command {
@@ -19,8 +20,8 @@ public class PrepShooter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalShooter.setPropelMotorVelocity(0.6);
-    globalShooter.setSpiralMotorVelocity(0.8);
+    globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
+    globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

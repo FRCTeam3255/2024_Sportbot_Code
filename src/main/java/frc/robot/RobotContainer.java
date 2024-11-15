@@ -28,9 +28,8 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
-  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_LeftY,
-      m_driverController.axis_RightX);
-  private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
+  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX, m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
+  private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subStager);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
@@ -42,7 +41,7 @@ public class RobotContainer {
 
   private void configureBindings() {
     m_driverController.btn_B.whileTrue(com_IntakeGround);
-    m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper));
+    m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper, subStager));
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
 

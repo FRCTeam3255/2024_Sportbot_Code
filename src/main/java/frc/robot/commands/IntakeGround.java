@@ -5,18 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Stager;
+import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class IntakeGround extends Command {
   /** Creates a new IntakeGround. */
   Intake globalIntake;
-  Hopper globalHopper;
+  Stager globalStager;
 
-  public IntakeGround(Intake passedIntake, Hopper passedHopper) {
+  public IntakeGround(Intake passedIntake, Stager passedStager) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalIntake = passedIntake;
-    globalHopper = passedHopper;
+    globalStager = passedStager;
   }
 
   // Called when the command is initially scheduled.
@@ -28,11 +29,11 @@ public class IntakeGround extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if hopper is full
-    if (globalHopper.isHopperFull()) {
+    // if Stager is full
+    if (globalStager.getHasGP()) {
       globalIntake.setIntakeVelocity(0);
     } else {
-      globalIntake.setIntakeVelocity(0.5);
+      globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_VELOCITY);
     }
   }
 
