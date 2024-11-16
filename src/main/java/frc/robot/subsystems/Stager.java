@@ -39,7 +39,7 @@ public class Stager extends SubsystemBase {
   }
 
   public boolean getHasGP() {
-    return hasGP.get();
+    return !hasGP.get();
   }
 
   @Override
