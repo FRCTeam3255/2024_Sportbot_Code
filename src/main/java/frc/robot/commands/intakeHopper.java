@@ -31,7 +31,7 @@ public class intakeHopper extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (subStager.getHasGP()) {
+    if (subStager.getHasGP()||subHopper.getFullHopper()) {
       subHopper.setOrientationMotorNuetralOutput();
     } else {
       subHopper.setOrientationMotorSpeed(Constants.constHopper.HOPPER_ORIENTATION_SPEED);

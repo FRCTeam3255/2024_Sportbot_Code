@@ -15,11 +15,12 @@ public class Hopper extends SubsystemBase {
   /** Creates a new Hopper. */
   TalonSRX orientationMotor;
   DigitalInput isGPDetected;
+  DigitalInput isHopperFull;
 
   public Hopper() {
     orientationMotor = new TalonSRX(RobotMap.mapHopper.ORIENTATION_MOTOR);
     isGPDetected = new DigitalInput(RobotMap.mapHopper.IS_GP_DETECTED_DIO);
-
+    isHopperFull = new DigitalInput(RobotMap.mapHopper.IS_HOPPER_FULL_DIO);
   }
 
   public void setOrientationMotorSpeed(double velocity) {
@@ -35,8 +36,17 @@ public class Hopper extends SubsystemBase {
     return !isGPDetected.get();
   }
 
+  public boolean getFullHopper(){
+
+    return !isHopperFull.get();
+
+  }
+
+
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("Hopper", getGamePieceHopper());
+    SmartDashboard.putBoolean("Hopper", getFullHopper());
+
   }
 }
