@@ -35,6 +35,7 @@ public class RobotContainer {
   private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
+  private final EjectGP com_EjectGP = new EjectGP(subIntake, subHopper);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -47,7 +48,7 @@ public class RobotContainer {
     m_driverController.btn_A.whileTrue(com_StageGP);
     m_driverController.btn_LeftBumper.whileTrue(com_IntakeHopper);
 
-    m_driverController.btn_RightBumper.whileTrue(new EjectGP(subIntake, subHopper));
+    m_driverController.btn_RightBumper.whileTrue(com_EjectGP);
 
     m_driverController.btn_Y.onTrue(com_Shoot);
 
