@@ -4,29 +4,29 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Hopper extends SubsystemBase {
   /** Creates a new Hopper. */
-  TalonFX orientationMotor;
+  TalonSRX orientationMotor;
   DigitalInput isGPDetected;
 
   public Hopper() {
-    orientationMotor = new TalonFX(RobotMap.mapHopper.ORIENTATION_MOTOR);
+    orientationMotor = new TalonSRX(RobotMap.mapHopper.ORIENTATION_MOTOR);
     isGPDetected = new DigitalInput(RobotMap.mapHopper.IS_GP_DETECTED_DIO);
 
   }
 
-  public void setOrientationMotorSpeed(double speed) {
-    orientationMotor.set(speed);
+  public void setOrientationMotorSpeed(double velocity) {
+    orientationMotor.set(ControlMode.PercentOutput, velocity);
   }
 
   public void setOrientationMotorNuetralOutput() {
-    orientationMotor.set(0);
+    orientationMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean getGamePieceHopper() {
