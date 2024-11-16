@@ -4,25 +4,26 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  TalonFX intakeMotor;
+  TalonSRX intakeMotor;
 
   public Intake() {
-    intakeMotor = new TalonFX(RobotMap.mapIntake.INTAKE_MOTOR_CAN);
+    intakeMotor = new TalonSRX(RobotMap.mapIntake.INTAKE_MOTOR_CAN);
   }
 
   public void setIntakeVelocity(double velocity) {
-    intakeMotor.set(velocity);
+    intakeMotor.set(ControlMode.PercentOutput, velocity);
   }
 
   public void setIntakeNuetralOutput() {
-    intakeMotor.set(0);
+    intakeMotor.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

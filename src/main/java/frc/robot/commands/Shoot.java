@@ -24,10 +24,12 @@ public class Shoot extends Command {
   @Override
   public void initialize() {
     // The speed need to change to a real number.
-    if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY) && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
+    if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)
+        && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
       globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
+      globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
     } else {
-      globalStager.setStagerMotorVelocity(0);
+      globalStager.setStagerMotorVelocityNuetralOutput();
     }
   }
 
@@ -40,8 +42,7 @@ public class Shoot extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalShooter.setPropelMotorVelocity(0);
-    globalShooter.setSpiralMotorVelocity(0);
+    globalStager.setStagerMotorVelocityNuetralOutput();
   }
 
   // Returns true when the command should end.
