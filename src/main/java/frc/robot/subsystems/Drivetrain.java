@@ -36,6 +36,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void setDrivetrainSpeed(double forwardVelocity, double rotationSpeed, boolean slowModeActivated) {
     // Divide speed in half if slow mode is activated
+
     if (slowModeActivated) {
       forwardVelocity = forwardVelocity * Constants.constDrivetrain.SLOW_MODE_MULTIPLIER;
       rotationSpeed = rotationSpeed * Constants.constDrivetrain.SLOW_MODE_MULTIPLIER;

@@ -39,9 +39,11 @@ public class RobotContainer {
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
+    m_driverController.setLeftDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
+    m_driverController.setRightDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
     configureBindings();
   }
-
+ 
   private void configureBindings() {
     m_driverController.btn_B.whileTrue(com_IntakeGround);
     m_driverController.btn_X.whileTrue(com_PrepShooter);
