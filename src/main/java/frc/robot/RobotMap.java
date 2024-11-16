@@ -36,7 +36,9 @@ public class RobotMap {
 
   public static class mapStager {
     public static final int STAGER_MOTOR_CAN = 40;
+    public static final int TOP_STAGER_MOTOR_CAN = 41;
     public static final int HAS_GP_DIO = 0;
+
   }
 
 }
