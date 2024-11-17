@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EjectGP;
+import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
@@ -36,6 +37,7 @@ public class RobotContainer {
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
   private final EjectGP com_EjectGP = new EjectGP(subIntake, subHopper);
+  private final EjectShooter com_EjectShooter = new EjectShooter(subStager);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -43,7 +45,7 @@ public class RobotContainer {
     m_driverController.setRightDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
     configureBindings();
   }
- 
+
   private void configureBindings() {
     m_driverController.btn_B.whileTrue(com_IntakeGround);
     m_driverController.btn_X.whileTrue(com_PrepShooter);
@@ -53,6 +55,7 @@ public class RobotContainer {
     m_driverController.btn_RightBumper.whileTrue(com_EjectGP);
 
     m_driverController.btn_Y.onTrue(com_Shoot);
+    m_driverController.btn_RightBumper.whileTrue(com_EjectShooter);
 
   }
 
