@@ -6,9 +6,10 @@ package frc.robot;
 
 /** Add your docs here. */
 public class Constants {
-  public static class constDrivetrain {
-    public static final double SLOW_MODE_MULTIPLIER = 0.5;
-  }
+    public static class constDrivetrain {
+      public static final double SLOW_MODE_MULTIPLIER = 0.5;
+      public static final double CONTROLLER_DEADZONE = 0.2;
+    }
 
   public static class constIntake {
     public static final double INTAKE_EJECT_VELOCITY = -0.5;
