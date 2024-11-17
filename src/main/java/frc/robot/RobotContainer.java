@@ -9,11 +9,10 @@ import com.frcteam3255.joystick.SN_XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
-import frc.robot.commands.EjectGP;
+import frc.robot.commands.EjectIntake;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.HasGP;
 import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
@@ -32,10 +31,9 @@ public class RobotContainer {
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subStager);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
-  private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
-  private final EjectGP com_EjectGP = new EjectGP(subIntake, subHopper);
+  private final EjectIntake com_EjectIntake = new EjectIntake(subIntake, subHopper);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -43,14 +41,11 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    m_driverController.btn_B.whileTrue(com_IntakeGround);
-    m_driverController.btn_X.whileTrue(com_PrepShooter);
-    m_driverController.btn_A.whileTrue(com_StageGP);
-    m_driverController.btn_LeftBumper.whileTrue(com_IntakeHopper);
-
-    m_driverController.btn_RightBumper.whileTrue(com_EjectGP);
-
-    m_driverController.btn_Y.onTrue(com_Shoot);
+    m_driverController.btn_LeftTrigger.whileTrue(com_IntakeGround);
+    m_driverController.btn_A.whileTrue(com_PrepShooter);
+    m_driverController.btn_B.whileTrue(com_IntakeHopper);
+    m_driverController.btn_LeftBumper.whileTrue(com_EjectIntake);
+    m_driverController.btn_RightTrigger.onTrue(com_Shoot);
 
   }
 

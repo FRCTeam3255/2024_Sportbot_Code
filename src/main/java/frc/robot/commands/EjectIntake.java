@@ -9,13 +9,13 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
 
-public class EjectGP extends Command {
+public class EjectIntake extends Command {
   /** Creates a new EjectGP. */
 
   Intake globalIntake;
   Hopper globalHopper;
 
-  public EjectGP(Intake subIntake, Hopper subHopper) {
+  public EjectIntake(Intake subIntake, Hopper subHopper) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.globalHopper = subHopper;
     this.globalIntake = subIntake;
