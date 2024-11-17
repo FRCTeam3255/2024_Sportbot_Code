@@ -45,10 +45,10 @@ public class RobotContainer {
   }
  
   private void configureBindings() {
-    m_driverController.btn_B.whileTrue(com_IntakeGround);
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
     m_driverController.btn_LeftBumper.whileTrue(com_IntakeHopper);
+    m_driverController.btn_LeftBumper.whileTrue(com_IntakeGround);
 
     m_driverController.btn_RightBumper.whileTrue(com_EjectGP);
 
