@@ -30,7 +30,8 @@ public class IntakeGround extends Command {
   @Override
   public void execute() {
     // if Stager is full
-    if (globalStager.getHasGP()) {
+
+    if (!globalStager.getHasGP()) {
       globalIntake.setIntakeNuetralOutput();
     } else {
       globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_EJECT_VELOCITY);
