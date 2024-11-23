@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.Constants;
 import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
@@ -34,10 +35,10 @@ public class IntakeGround extends Command {
   @Override
   public void execute() {
     // if Stager is full
-    if (globalStager.getHasGP()) {
+    if (!globalStager.getHasGP()) {
       globalIntake.setIntakeVelocity(0);
     } else {
-      globalIntake.setIntakeVelocity(0.5);
+      globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_VELOCITY);
     }
   }
 

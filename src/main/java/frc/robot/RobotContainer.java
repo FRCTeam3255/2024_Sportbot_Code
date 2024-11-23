@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EjectGP;
+import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
@@ -36,9 +37,13 @@ public class RobotContainer {
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter, subLED);
   private final HasGP com_StageGP = new HasGP(subStager, subLED);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter, subLED);
+  private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager, subLED);
+  private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter, subLED);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
+    m_driverController.setLeftDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
+    m_driverController.setRightDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
     configureBindings();
   }
 
@@ -47,10 +52,11 @@ public class RobotContainer {
     m_driverController.btn_LeftBumper.whileTrue(new intakeHopper(subHopper, subStager, subLED));
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
-
+    m_driverController.btn_LeftTrigger.whileTrue(com_IntakeHopper);
     m_driverController.btn_RightBumper.whileTrue(new EjectGP(subIntake, subHopper, subLED));
 
     m_driverController.btn_Y.onTrue(com_Shoot);
+    m_driverController.btn_RightBumper.whileTrue(com_EjectShooter);
 
   }
 
