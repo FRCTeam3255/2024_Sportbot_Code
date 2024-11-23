@@ -32,8 +32,7 @@ public class PrepShooter extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalShooter.setPropelMotorVelocity(0);
-    globalShooter.setSpiralMotorVelocity(0);
+    globalShooter.setShooterNuetralOutput();
   }
 
   // Returns true when the command should end.
