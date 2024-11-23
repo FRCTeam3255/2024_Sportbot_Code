@@ -6,10 +6,10 @@ package frc.robot;
 
 /** Add your docs here. */
 public class Constants {
-    public static class constDrivetrain {
-      public static final double SLOW_MODE_MULTIPLIER = 0.5;
-      public static final double CONTROLLER_DEADZONE = 0.2;
-    }
+  public static class constDrivetrain {
+    public static final double SLOW_MODE_MULTIPLIER = 0.5;
+    public static final double CONTROLLER_DEADZONE = 0.2;
+  }
 
   public static class constIntake {
     public static final double INTAKE_EJECT_VELOCITY = -0.5;
@@ -23,6 +23,10 @@ public class Constants {
   public static class constShooter {
     public static final double PROPEL_MOTOR_VELOCITY = 0.6;
     public static final double SPIRAL_MOTOR_VELOCITY = 0.8;
+    public static final double PROPEL_MOTOR_VELOCITY_EJECT = 0.3;
+    public static final double SPIRAL_MOTOR_VELOCITY_EJECT = 0.3;
+    public static final double PROPEL_MOTOR_VELOCITY_EJECT_REQUIREMENT = 0.2;
+    public static final double SPIRAL_MOTOR_VELOCITY_EJECT_REQUIREMENT = 0.2;
   }
 
   public static class constStager {
