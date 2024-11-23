@@ -9,7 +9,7 @@ import com.frcteam3255.joystick.SN_XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
-import frc.robot.commands.EjectIntake;
+import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
@@ -33,7 +33,7 @@ public class RobotContainer {
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
-  private final EjectIntake com_EjectIntake = new EjectIntake(subIntake, subHopper);
+  private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -41,12 +41,12 @@ public class RobotContainer {
     m_driverController.setRightDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
     configureBindings();
   }
- 
+
   private void configureBindings() {
     m_driverController.btn_LeftTrigger.whileTrue(com_IntakeGround);
     m_driverController.btn_A.whileTrue(com_PrepShooter);
     m_driverController.btn_B.whileTrue(com_IntakeHopper);
-    m_driverController.btn_LeftBumper.whileTrue(com_EjectIntake);
+    m_driverController.btn_LeftBumper.whileTrue(com_EjectShooter);
     m_driverController.btn_RightTrigger.onTrue(com_Shoot);
 
   }
