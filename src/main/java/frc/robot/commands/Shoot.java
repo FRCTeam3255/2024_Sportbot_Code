@@ -27,16 +27,13 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if ((globalShooter.getPropelMotorVelocity() >= 0.6) && (globalShooter.getSpiralMotorVelocity() >= 0.8)) {
-      globalStager.setStagerMotorVelocity(0.3);
+    if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)
+        && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
+      globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
+      globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
       globalLED.setLEDs(constLED.LED_SHOOTING);
-      if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)
-          && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
-        globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
-        globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
-      } else {
-        globalStager.setStagerMotorVelocityNuetralOutput();
-      }
+    } else {
+      globalStager.setStagerMotorVelocityNuetralOutput();
     }
   }
 

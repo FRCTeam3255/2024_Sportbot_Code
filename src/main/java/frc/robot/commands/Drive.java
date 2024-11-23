@@ -5,28 +5,27 @@
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
-import frc.robot.subsystems.LED;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Constants.constLED;
+
 import frc.robot.subsystems.Drivetrain;
 
 public class Drive extends Command {
   /** Creates a new Drive. */
-  LED globalLED;
+
   Drivetrain globalDrivetrain;
   DoubleSupplier globalForwardSpeed;
   DoubleSupplier globalRotationSpeed;
   Trigger globalSlowMode;
 
   public Drive(Drivetrain passedDrivetrain, DoubleSupplier passedForwardSpeed, DoubleSupplier passedRotationSpeed,
-      Trigger passedSlowMode, LED driveLED) {
+      Trigger passedSlowMode) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalDrivetrain = passedDrivetrain;
     globalForwardSpeed = passedForwardSpeed;
     globalRotationSpeed = passedRotationSpeed;
     globalSlowMode = passedSlowMode;
-    globalLED = driveLED;
     addRequirements(globalDrivetrain);
   }
 
@@ -40,7 +39,7 @@ public class Drive extends Command {
   public void execute() {
     globalDrivetrain.setDrivetrainSpeed(globalForwardSpeed.getAsDouble(), globalRotationSpeed.getAsDouble(),
         globalSlowMode.getAsBoolean());
-    globalLED.setLEDs(constLED.LED_DRIVE);
+
   }
 
   // Called once the command ends or is interrupted.
