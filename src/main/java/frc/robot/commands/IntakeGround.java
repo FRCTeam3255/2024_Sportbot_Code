@@ -6,23 +6,28 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 
 public class IntakeGround extends Command {
   /** Creates a new IntakeGround. */
   Intake globalIntake;
   Stager globalStager;
+  LED globalLED;
 
-  public IntakeGround(Intake passedIntake, Stager passedStager) {
+  public IntakeGround(Intake passedIntake, Stager passedStager, LED groundIntakeLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalIntake = passedIntake;
     globalStager = passedStager;
+    globalLED = groundIntakeLED;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     globalIntake.setIntakeVelocity(0);
+    globalLED.setLEDs(constLED.LED_INTAKE_GROUND);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

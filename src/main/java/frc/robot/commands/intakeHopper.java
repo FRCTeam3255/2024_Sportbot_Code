@@ -5,20 +5,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Stager;
 
 public class intakeHopper extends Command {
 
   Hopper subHopper;
   Stager subStager;
+  LED subLED;
 
   /** Creates a new intakeHopper. */
-  public intakeHopper(Hopper subHopper, Stager subStager) {
+  public intakeHopper(Hopper subHopper, Stager subStager, LED intakeHopperLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.subHopper = subHopper;
     this.subStager = subStager;
-
+    subLED = intakeHopperLED;
   }
 
   // Called when the command is initially scheduled.
@@ -26,6 +29,7 @@ public class intakeHopper extends Command {
   public void initialize() {
 
     subHopper.setOrientationMotorSpeed(.5);
+    subLED.setLEDs(constLED.LED_INTAKE_HOPPER);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

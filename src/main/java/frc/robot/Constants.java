@@ -6,13 +6,9 @@ package frc.robot;
 
 /** Add your docs here. */
 public class Constants {
-<<<<<<< Updated upstream
-    public static class constDrivetrain {
-      public static final double SLOW_MODE_MULTIPLIER = 0.5;
-    }
-=======
-  public static class constDrivetrain {
 
+  public static class constDrivetrain {
+    public static final double SLOW_MODE_MULTIPLIER = 0.5;
   }
 
   public static class constLED {
@@ -20,7 +16,16 @@ public class Constants {
     public static final int LED_NUMBER = 192;
     public static final int LED_STRIP_START_INDEX = 8;
     public static final int[] CLEAR_LEDS = { 0, 0, 0 };
-    public static final int[] LED_Shooting = { 105, 69, 9 };
+    public static final int[] LED_SHOOTING = { 105, 69, 9 };
+    public static final int[] LED_PREP_SHOOTING = { 254, 212, 6 };
+    public static final int[] LED_NONE = { 2, 157, 254 };
+    public static final int[] LED_INTAKE_HOPPER = { 133, 249, 1 };
+    public static final int[] LED_INTAKE_GROUND = { 187, 1, 249 };
+    public static final int[] LED_HASGP = { 249, 1, 109 };
+    public static final int[] LED_FULL_HOPPER = { 255, 255, 255 };
+    public static final int[] LED_EJECTGP = { 3, 242, 230 };
+    public static final int[] LED_DRIVE = { 109, 11, 140 };
+
   }
->>>>>>> Stashed changes
+
 }

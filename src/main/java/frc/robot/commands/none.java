@@ -5,8 +5,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 
@@ -15,14 +17,16 @@ public class none extends Command {
   Intake subIntake;
   Shooter subShooter;
   Stager subStager;
+  LED subLED;
 
   /** Creates a new none. */
-  public none(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
+  public none(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager, LED noneLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     subHopper = passedHopper;
     subIntake = passedIntake;
     subShooter = passedShooter;
     subStager = passedStager;
+    subLED = noneLED;
   }
 
   // Called when the command is initially scheduled.
@@ -33,6 +37,7 @@ public class none extends Command {
     subStager.setStagerMotorVelocity(0);
     subShooter.setSpiralMotorVelocity(0);
     subShooter.setPropelMotorVelocity(0);
+    subLED.setLEDs(constLED.LED_NONE);
 
   }
 

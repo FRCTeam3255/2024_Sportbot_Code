@@ -5,15 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.constLED;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 
 public class PrepShooter extends Command {
   /** Creates a new PrepShooter. */
   Shooter globalShooter;
+  LED globalLED;
 
-  public PrepShooter(Shooter passedShooter) {
+  public PrepShooter(Shooter passedShooter, LED prepLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalShooter = passedShooter;
+    globalLED = prepLED;
   }
 
   // Called when the command is initially scheduled.
@@ -21,6 +25,7 @@ public class PrepShooter extends Command {
   public void initialize() {
     globalShooter.setPropelMotorVelocity(0.6);
     globalShooter.setSpiralMotorVelocity(0.8);
+    globalLED.setLEDs(constLED.LED_PREP_SHOOTING);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

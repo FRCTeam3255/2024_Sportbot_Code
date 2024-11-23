@@ -6,20 +6,24 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.Constants.constLED;
+import frc.robot.subsystems.LED;
 
 public class HasGP extends Command {
   /** Creates a new StageGP. */
   Stager globalStager;
+  LED globalLED;
 
-  public HasGP(Stager passedStager) {
+  public HasGP(Stager passedStager, LED stagerLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
+    globalLED = stagerLED;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    globalLED.setLEDs(constLED.LED_HASGP);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
