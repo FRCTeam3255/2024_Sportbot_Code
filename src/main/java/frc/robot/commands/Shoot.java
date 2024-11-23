@@ -27,7 +27,6 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // The speed need to change to a real number.
     if ((globalShooter.getPropelMotorVelocity() >= 0.6) && (globalShooter.getSpiralMotorVelocity() >= 0.8)) {
       globalStager.setStagerMotorVelocity(0.3);
       globalLED.setLEDs(constLED.LED_SHOOTING);
