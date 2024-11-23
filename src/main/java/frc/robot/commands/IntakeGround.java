@@ -23,15 +23,16 @@ public class IntakeGround extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalIntake.setIntakeVelocity(0);
+    globalIntake.setIntakeNuetralOutput();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // if Stager is full
-    if (!globalStager.getHasGP()) {
-      globalIntake.setIntakeVelocity(0);
+
+    if (globalStager.getHasGP()) {
+      globalIntake.setIntakeNuetralOutput();
     } else {
       globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_VELOCITY);
     }
