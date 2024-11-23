@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EjectGP;
 import frc.robot.commands.EjectShooter;
+import frc.robot.commands.HasGP;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
