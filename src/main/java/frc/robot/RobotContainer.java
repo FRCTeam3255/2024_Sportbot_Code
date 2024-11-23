@@ -37,7 +37,7 @@ public class RobotContainer {
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
   private final EjectGP com_EjectGP = new EjectGP(subIntake, subHopper);
-  private final EjectShooter com_EjectShooter = new EjectShooter(subStager);
+  private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
