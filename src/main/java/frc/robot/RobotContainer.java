@@ -14,7 +14,6 @@ import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.HasGP;
 import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
