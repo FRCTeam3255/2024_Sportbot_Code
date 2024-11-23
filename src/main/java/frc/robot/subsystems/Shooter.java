@@ -4,9 +4,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-// import com.ctre.phoenix6.hardwareTalonSRX;
+import com.ctre.phoenix6.hardware.TalonFX;
+// import com.ctre.phoenix6.hardwareTalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,28 +13,33 @@ import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  TalonSRX propelMotor;
-  TalonSRX spiralMotor;
+  TalonFX propelMotor;
+  TalonFX spiralMotor;
 
   public Shooter() {
-    propelMotor = new TalonSRX(RobotMap.mapShooter.PROPEL_MOTOR_CAN);
-    spiralMotor = new TalonSRX(RobotMap.mapShooter.SPIRAL_MOTOR_CAN);
+    propelMotor = new TalonFX(RobotMap.mapShooter.PROPEL_MOTOR_CAN);
+    spiralMotor = new TalonFX(RobotMap.mapShooter.SPIRAL_MOTOR_CAN);
   }
 
   public void setSpiralMotorVelocity(double velocity) {
-    spiralMotor.set(ControlMode.PercentOutput, velocity);
+    spiralMotor.set(velocity);
   }
 
   public double getSpiralMotorVelocity() {
-    return spiralMotor.getMotorOutputVoltage();
+    return spiralMotor.get();
   }
 
   public void setPropelMotorVelocity(double velocity) {
-    propelMotor.set(ControlMode.PercentOutput, velocity);
+    propelMotor.set(velocity);
   }
 
   public double getPropelMotorVelocity() {
-    return propelMotor.getMotorOutputVoltage();
+    return propelMotor.get();
+  }
+
+  public void setShooterNuetralOutput() {
+    propelMotor.set(0);
+    spiralMotor.set(0);
   }
 
   @Override
