@@ -18,6 +18,7 @@ import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 
@@ -28,11 +29,19 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
+<<<<<<< Updated upstream
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX, m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
   private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subStager);
+=======
+  private final LED subLED = new LED();
+  private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_LeftY,
+      m_driverController.axis_RightX);
+  private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subHopper);
+>>>>>>> Stashed changes
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
+  private final Shoot com_Shoot = new Shoot(subStager, subShooter, subLED);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);

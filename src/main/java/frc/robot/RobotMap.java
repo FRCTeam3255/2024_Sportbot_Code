@@ -39,4 +39,9 @@ public class RobotMap {
     public static final int HAS_GP_DIO = 0;
   }
 
+  public static class mapLED {
+    public static final int LED_CAN = 0;
+
+  }
+
 }

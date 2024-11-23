@@ -6,17 +6,21 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.Constants.constLED;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 
 public class Shoot extends Command {
   /** Creates a new Shoot. */
   Stager globalStager;
   Shooter globalShooter;
+  LED globalLED;
 
-  public Shoot(Stager passedStager, Shooter passedShooter) {
+  public Shoot(Stager passedStager, Shooter passedShooter, LED shootLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
     globalShooter = passedShooter;
+    globalLED = shootLED;
   }
 
   // Called when the command is initially scheduled.
@@ -25,6 +29,7 @@ public class Shoot extends Command {
     // The speed need to change to a real number.
     if ((globalShooter.getPropelMotorVelocity() >= 0.6) && (globalShooter.getSpiralMotorVelocity() >= 0.8)) {
       globalStager.setStagerMotorVelocity(0.3);
+      globalLED.setLEDs(constLED.LED_Shooting);
     } else {
       globalStager.setStagerMotorVelocity(0);
     }
