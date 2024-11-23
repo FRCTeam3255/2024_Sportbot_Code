@@ -9,7 +9,6 @@ import com.frcteam3255.joystick.SN_XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.Drive;
-import frc.robot.commands.EjectGP;
 import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
 import frc.robot.commands.PrepShooter;
@@ -36,7 +35,6 @@ public class RobotContainer {
   private final HasGP com_StageGP = new HasGP(subStager);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
-  private final EjectGP com_EjectGP = new EjectGP(subIntake, subHopper);
   private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter);
 
   public RobotContainer() {
@@ -51,8 +49,6 @@ public class RobotContainer {
     m_driverController.btn_X.whileTrue(com_PrepShooter);
     m_driverController.btn_A.whileTrue(com_StageGP);
     m_driverController.btn_LeftBumper.whileTrue(com_IntakeHopper);
-
-    m_driverController.btn_RightBumper.whileTrue(com_EjectGP);
 
     m_driverController.btn_Y.onTrue(com_Shoot);
     m_driverController.btn_RightBumper.whileTrue(com_EjectShooter);
