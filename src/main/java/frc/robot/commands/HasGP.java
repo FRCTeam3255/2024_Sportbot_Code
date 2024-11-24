@@ -5,21 +5,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 
 public class HasGP extends Command {
   /** Creates a new StageGP. */
   Stager globalStager;
+  Shooter globalShooter;
 
-  public HasGP(Stager passedStager) {
+  public HasGP(Stager passedStager, Shooter passedShooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
+    globalShooter = passedShooter;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    globalShooter.setShooterNuetralOutput();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

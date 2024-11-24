@@ -66,7 +66,7 @@ public class StateMachine extends SubsystemBase {
           case INTAKE_HOPPER:
           case PREP_SHOOTER:
           case SHOOT:
-            return new HasGP(globalStager);
+            return new HasGP(globalStager, globalShooter);
         }
         break;
       case INTAKE_GROUND: // if desired state is intake ground

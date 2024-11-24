@@ -33,13 +33,10 @@ public class RobotContainer {
   private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager);
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX,
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
-  private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
-  private final Shoot com_Shoot = new Shoot(subStager, subShooter);
-  private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
-  private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter);
 
   private final Trigger hasGamePieceTrigger = new Trigger(subStager::getHasGP);
 
+  // Drive
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
     m_driverController.setLeftDeadband(Constants.constDrivetrain.CONTROLLER_DEADZONE);
@@ -48,20 +45,52 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    // Intake
     m_driverController.btn_LeftTrigger
         .whileTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.INTAKE_GROUND)))
         .onFalse(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.HAS_GP))
+            .unless(hasGamePieceTrigger));
+
+    // PrepShooter
+    m_driverController.btn_A
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.PREP_SHOOTER)));
+
+    // IntakeHopper
+    m_driverController.btn_B
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.INTAKE_HOPPER)))
+        .onFalse(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.NONE)));
+
+    // EjectShooter
+    m_driverController.btn_RightBumper
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.EJECT_SHOOTER)))
+        .onFalse(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.NONE)));
+
+    // EjectIntake
+    m_driverController.btn_LeftBumper
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.EJECT_INTAKE)))
+        .onFalse(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.NONE)));
+
+    // Shoot
+    m_driverController.btn_RightTrigger
+        .onTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.SHOOT)))
+        .onFalse(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.NONE))
             .unless(hasGamePieceTrigger));
-    m_driverController.btn_A.whileTrue(com_PrepShooter);
-    m_driverController.btn_B.whileTrue(com_IntakeHopper);
-    m_driverController.btn_LeftBumper.whileTrue(com_EjectShooter);
-    m_driverController.btn_RightTrigger.onTrue(com_Shoot);
 
   }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured :3");
   }
+
 }

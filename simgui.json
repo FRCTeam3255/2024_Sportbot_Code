@@ -1,10 +1,14 @@
 {
-  "NTProvider": {
-    "types": {
-      "/FMSInfo": "FMSInfo"
+  "HALProvider": {
+    "DIO": {
+      "window": {
+        "visible": true
+      }
+    },
+    "RoboRIO": {
+      "window": {
+        "visible": true
+      }
     }
-  },
-  "NetworkTables Info": {
-    "visible": true
   }
 }
