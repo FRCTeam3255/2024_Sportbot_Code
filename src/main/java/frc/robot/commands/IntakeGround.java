@@ -6,6 +6,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Stager;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
@@ -13,9 +15,12 @@ public class IntakeGround extends Command {
   /** Creates a new IntakeGround. */
   Intake globalIntake;
   Stager globalStager;
+  StateMachine globalStateMachine;
 
-  public IntakeGround(Intake passedIntake, Stager passedStager) {
+  public IntakeGround(StateMachine passedStateMachine, Intake passedIntake, Stager passedStager) {
     // Use addRequirements() here to declare subsystem dependencies.
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
     globalIntake = passedIntake;
     globalStager = passedStager;
   }
@@ -23,6 +28,7 @@ public class IntakeGround extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.INTAKE_GROUND);
     globalIntake.setIntakeNuetralOutput();
   }
 

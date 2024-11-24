@@ -8,6 +8,7 @@ import com.frcteam3255.joystick.SN_XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EjectShooter;
 import frc.robot.commands.IntakeGround;
@@ -19,6 +20,8 @@ import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class RobotContainer {
   private final SN_XboxController m_driverController = new SN_XboxController(RobotMap.mapControllers.DRIVER_USB);
@@ -27,13 +30,15 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
+  private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager);
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX,
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
-  private final IntakeGround com_IntakeGround = new IntakeGround(subIntake, subStager);
   private final PrepShooter com_PrepShooter = new PrepShooter(subShooter);
   private final Shoot com_Shoot = new Shoot(subStager, subShooter);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager);
   private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter);
+
+  private final Trigger hasGamePieceTrigger = new Trigger(subStager::getHasGP);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -43,7 +48,12 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    m_driverController.btn_LeftTrigger.whileTrue(com_IntakeGround);
+    m_driverController.btn_LeftTrigger
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.INTAKE_GROUND)))
+        .onFalse(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.NONE))
+            .unless(hasGamePieceTrigger));
     m_driverController.btn_A.whileTrue(com_PrepShooter);
     m_driverController.btn_B.whileTrue(com_IntakeHopper);
     m_driverController.btn_LeftBumper.whileTrue(com_EjectShooter);
@@ -52,6 +62,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return Commands.print("No autonomous command configured :3");
   }
 }
