@@ -8,21 +8,28 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 import frc.robot.Constants;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class EjectShooter extends Command {
   /** Creates a new EjectShooter. */
   Stager globalStager;
   Shooter globalShooter;
+  StateMachine globalStateMachine;
 
-  public EjectShooter(Stager passedStager, Shooter passedShooter) {
+  public EjectShooter(StateMachine passedStateMachine, Stager passedStager, Shooter passedShooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
     globalShooter = passedShooter;
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.EJECT_SHOOTER);
     globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY_EJECT);
     globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY_EJECT);
   }

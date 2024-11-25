@@ -7,19 +7,26 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class PrepShooter extends Command {
   /** Creates a new PrepShooter. */
   Shooter globalShooter;
+  StateMachine globalStateMachine;
 
-  public PrepShooter(Shooter passedShooter) {
+  public PrepShooter(StateMachine passedStateMachine, Shooter passedShooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalShooter = passedShooter;
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.PREP_SHOOTER);
     globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
     globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
   }

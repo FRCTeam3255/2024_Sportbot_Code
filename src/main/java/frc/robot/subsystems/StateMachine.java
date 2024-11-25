@@ -17,6 +17,7 @@ public class StateMachine extends SubsystemBase {
   Intake globalIntake;
   Shooter globalShooter;
   Stager globalStager;
+  StateMachine globalStateMachine;
 
   public StateMachine(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
     globalHopper = passedHopper;
@@ -50,22 +51,23 @@ public class StateMachine extends SubsystemBase {
       case EJECT_INTAKE: // if desired state is eject intake
         switch (currentState) { // check what our current state is
           case INTAKE_GROUND: // what are we allowed to come from
-            return new EjectIntake(globalIntake);
+            return new EjectIntake(globalStateMachine, globalIntake);
         }
         break;
       case EJECT_SHOOTER:
         switch (currentState) {
           case HAS_GP:
           case PREP_SHOOTER:
-            return new EjectShooter(globalStager, globalShooter);
+            return new EjectShooter(globalStateMachine, globalStager, globalShooter);
         }
         break;
       case HAS_GP:
         switch (currentState) {
           case INTAKE_HOPPER:
-          case PREP_SHOOTER:
           case SHOOT:
-            return new HasGP(globalStager, globalShooter);
+          case PREP_SHOOTER:
+
+            return new HasGP(globalStager, globalShooter, globalStateMachine);
         }
         break;
       case INTAKE_GROUND: // if desired state is intake ground
@@ -78,7 +80,7 @@ public class StateMachine extends SubsystemBase {
         switch (currentState) {
           case NONE: // is the current state NONE
           case INTAKE_GROUND: // or is the current state INTAKE_GROUND
-            return new intakeHopper(globalHopper, globalStager);
+            return new intakeHopper(globalStateMachine, globalHopper, globalStager);
         }
         break;
       case NONE:
@@ -86,19 +88,19 @@ public class StateMachine extends SubsystemBase {
           case EJECT_INTAKE:
           case EJECT_SHOOTER:
           case SHOOT:
-            return new none(globalHopper, globalIntake, globalShooter, globalStager);
+            return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager);
         }
         break;
       case PREP_SHOOTER:
         switch (currentState) {
           case HAS_GP:
-            return new PrepShooter(globalShooter);
+            return new PrepShooter(globalStateMachine, globalShooter);
         }
         break;
       case SHOOT:
         switch (currentState) {
           case PREP_SHOOTER:
-            return new Shoot(globalStager, globalShooter);
+            return new Shoot(globalStateMachine, globalStager, globalShooter);
         }
         break;
       // default:
