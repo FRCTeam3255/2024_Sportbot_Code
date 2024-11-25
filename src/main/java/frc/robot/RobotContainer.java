@@ -35,6 +35,7 @@ public class RobotContainer {
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
 
   private final Trigger hasGamePieceTrigger = new Trigger(subStager::getHasGP);
+  private final Trigger isGPDetectedTrigger = new Trigger(subHopper::getGamePieceHopper);
 
   // Drive
   public RobotContainer() {
@@ -50,7 +51,7 @@ public class RobotContainer {
         .whileTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.INTAKE_GROUND)))
         .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.HAS_GP))
+            () -> subStateMachine.tryState(RobotState.NONE))
             .unless(hasGamePieceTrigger));
 
     // PrepShooter
@@ -59,11 +60,9 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.PREP_SHOOTER)));
 
     // IntakeHopper
-    m_driverController.btn_B
-        .whileTrue(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.INTAKE_HOPPER)))
-        .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.NONE)));
+    isGPDetectedTrigger
+        .onTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.INTAKE_HOPPER)));
 
     // EjectShooter
     m_driverController.btn_RightBumper
@@ -89,10 +88,15 @@ public class RobotContainer {
 
     // prepShooter -> hasGP
     if (subStateMachine.getState() == RobotState.PREP_SHOOTER) {
-        m_driverController.btn_X
+      m_driverController.btn_North
+          .onTrue(Commands.deferredProxy(
+              () -> subStateMachine.tryState(RobotState.HAS_GP)));
+    }
+
+    // hasGP
+    hasGamePieceTrigger
         .onTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.HAS_GP)));
-    }
 
   }
 
