@@ -87,6 +87,13 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.NONE))
             .unless(hasGamePieceTrigger));
 
+    // prepShooter -> hasGP
+    if (subStateMachine.getState() == RobotState.PREP_SHOOTER) {
+        m_driverController.btn_X
+        .onTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.HAS_GP)));
+    }
+
   }
 
   public Command getAutonomousCommand() {

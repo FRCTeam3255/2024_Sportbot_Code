@@ -62,7 +62,6 @@ public class StateMachine extends SubsystemBase {
         break;
       case HAS_GP:
         switch (currentState) {
-          case INTAKE_GROUND:
           case INTAKE_HOPPER:
           case PREP_SHOOTER:
           case SHOOT:
