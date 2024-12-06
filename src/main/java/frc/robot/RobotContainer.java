@@ -10,11 +10,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Drive;
-import frc.robot.commands.EjectShooter;
-import frc.robot.commands.IntakeGround;
-import frc.robot.commands.PrepShooter;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.intakeHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
@@ -31,6 +26,7 @@ public class RobotContainer {
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
   private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager);
+  
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX,
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
 
