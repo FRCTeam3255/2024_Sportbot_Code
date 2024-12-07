@@ -42,7 +42,7 @@ public class RobotContainer {
 
   private void configureBindings() {
     m_driverController.btn_LeftTrigger.whileTrue(com_IntakeGround);
-    m_driverController.btn_A.whileTrue(com_PrepShooter);
+    m_driverController.btn_A.onTrue(com_PrepShooter);
     m_driverController.btn_B.whileTrue(com_IntakeHopper);
     m_driverController.btn_LeftBumper.whileTrue(com_EjectShooter);
     m_driverController.btn_RightTrigger.onTrue(com_Shoot);

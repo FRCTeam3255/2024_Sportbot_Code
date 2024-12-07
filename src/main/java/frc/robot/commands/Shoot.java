@@ -27,6 +27,8 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
+    globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
     if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)
         && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
       globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
@@ -47,6 +49,7 @@ public class Shoot extends Command {
   @Override
   public void end(boolean interrupted) {
     globalStager.setStagerMotorVelocityNuetralOutput();
+    globalShooter.setShooterNuetralOutput();
   }
 
   // Returns true when the command should end.
