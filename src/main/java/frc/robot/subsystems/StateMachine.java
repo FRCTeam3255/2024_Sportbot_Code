@@ -17,7 +17,7 @@ public class StateMachine extends SubsystemBase {
   Intake globalIntake;
   Shooter globalShooter;
   Stager globalStager;
-  StateMachine globalStateMachine;
+  StateMachine globalStateMachine = this;
 
   public StateMachine(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
     globalHopper = passedHopper;
@@ -66,6 +66,7 @@ public class StateMachine extends SubsystemBase {
           case INTAKE_HOPPER:
           case SHOOT:
           case PREP_SHOOTER:
+          case NONE:
 
             return new HasGP(globalStager, globalShooter, globalStateMachine);
         }
@@ -88,6 +89,8 @@ public class StateMachine extends SubsystemBase {
           case EJECT_INTAKE:
           case EJECT_SHOOTER:
           case SHOOT:
+          case INTAKE_GROUND:
+          case INTAKE_HOPPER:
             return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager);
         }
         break;
