@@ -29,7 +29,6 @@ public class intakeHopper extends Command {
   @Override
   public void initialize() {
 
-    subHopper.setOrientationMotorSpeed(.5);
     subLED.setLEDs(constLED.LED_INTAKE_HOPPER);
     subHopper.setOrientationMotorSpeed(Constants.constHopper.HOPPER_ORIENTATION_SPEED);
   }
