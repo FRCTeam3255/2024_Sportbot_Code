@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import com.frcteam3255.joystick.SN_XboxController;
@@ -13,6 +9,7 @@ import frc.robot.commands.Drive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 import frc.robot.subsystems.StateMachine;
@@ -21,6 +18,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class RobotContainer {
   private final SN_XboxController m_driverController = new SN_XboxController(RobotMap.mapControllers.DRIVER_USB);
   private final Drivetrain subDrivetrain = new Drivetrain();
+  private final LED subLED = new LED();
   private final Intake subIntake = new Intake();
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();

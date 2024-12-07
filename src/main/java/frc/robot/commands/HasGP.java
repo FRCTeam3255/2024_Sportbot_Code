@@ -9,17 +9,21 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
+import frc.robot.Constants.constLED;
+import frc.robot.subsystems.LED;
 
 public class HasGP extends Command {
   /** Creates a new StageGP. */
   Stager globalStager;
+  LED globalLED;
   Shooter globalShooter;
   StateMachine globalStateMachine;
 
-  public HasGP(Stager passedStager, Shooter passedShooter, StateMachine passedStateMachine) {
+  public HasGP(Stager passedStager, Shooter passedShooter, StateMachine passedStateMachine, LED stagerLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
     globalShooter = passedShooter;
+    globalLED = stagerLED;
     globalStateMachine = passedStateMachine;
     addRequirements(globalStateMachine);
   }
@@ -28,6 +32,7 @@ public class HasGP extends Command {
   @Override
   public void initialize() {
     globalStateMachine.setState(RobotState.HAS_GP);
+    globalLED.setLEDs(constLED.LED_HASGP);
     globalShooter.setShooterNuetralOutput();
     globalStager.getHasGP();
 

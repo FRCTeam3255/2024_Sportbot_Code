@@ -41,4 +41,9 @@ public class RobotMap {
 
   }
 
+  public static class mapLED {
+    public static final int LED_CAN = 0;
+
+  }
+
 }

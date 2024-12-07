@@ -9,20 +9,24 @@ import frc.robot.subsystems.Stager;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
 import frc.robot.Constants;
+import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 
 public class IntakeGround extends Command {
   /** Creates a new IntakeGround. */
   Intake globalIntake;
   Stager globalStager;
   StateMachine globalStateMachine;
+  LED globalLED;
 
-  public IntakeGround(StateMachine passedStateMachine, Intake passedIntake, Stager passedStager) {
+  public IntakeGround(StateMachine passedStateMachine, Intake passedIntake, Stager passedStager, LED groundIntakeLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStateMachine = passedStateMachine;
     addRequirements(globalStateMachine);
     globalIntake = passedIntake;
     globalStager = passedStager;
+    globalLED = groundIntakeLED;
   }
 
   // Called when the command is initially scheduled.
@@ -30,6 +34,7 @@ public class IntakeGround extends Command {
   public void initialize() {
     globalStateMachine.setState(RobotState.INTAKE_GROUND);
     globalIntake.setIntakeNuetralOutput();
+    globalLED.setLEDs(constLED.LED_INTAKE_GROUND);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
