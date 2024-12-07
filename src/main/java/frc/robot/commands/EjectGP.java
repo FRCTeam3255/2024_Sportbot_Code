@@ -5,9 +5,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.Constants;
 import frc.robot.Constants.constLED;
-import frc.robot.subsystems.Hopper;
+
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 
@@ -15,11 +15,9 @@ public class EjectGP extends Command {
   /** Creates a new EjectGP. */
   LED globalLED;
   Intake globalIntake;
-  Hopper globalHopper;
 
-  public EjectGP(Intake subIntake, Hopper subHopper, LED ejectLED) {
+  public EjectGP(Intake subIntake, LED ejectLED) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.globalHopper = subHopper;
     this.globalIntake = subIntake;
     globalLED = ejectLED;
   }
@@ -27,7 +25,7 @@ public class EjectGP extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalIntake.setIntakeVelocity(-0.5);
+    globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_EJECT_VELOCITY);
     globalLED.setLEDs(constLED.LED_EJECTGP);
   }
 
@@ -39,7 +37,7 @@ public class EjectGP extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    globalHopper.setOrientationMotorNuetralOutput();
+
     globalIntake.setIntakeNuetralOutput();
   }
 
