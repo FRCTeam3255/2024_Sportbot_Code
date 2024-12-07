@@ -26,7 +26,7 @@ public class RobotContainer {
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
   private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager);
-  
+
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX,
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);
 
@@ -48,7 +48,7 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.INTAKE_GROUND)))
         .onFalse(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.NONE))
-            .unless(hasGamePieceTrigger));
+            .unless(isGPDetectedTrigger));
 
     // PrepShooter
     m_driverController.btn_A
@@ -79,21 +79,22 @@ public class RobotContainer {
         .onTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.SHOOT)))
         .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.NONE))
-            .unless(hasGamePieceTrigger));
+            () -> subStateMachine.tryState(RobotState.NONE)));
 
     // prepShooter -> hasGP
     if (subStateMachine.getState() == RobotState.PREP_SHOOTER) {
-      m_driverController.btn_North
+      m_driverController.btn_B
           .onTrue(Commands.deferredProxy(
               () -> subStateMachine.tryState(RobotState.HAS_GP)));
     }
 
     // hasGP
-    hasGamePieceTrigger
-        .onTrue(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.HAS_GP)));
-
+    if (subStateMachine.getState() == RobotState.SHOOT || subStateMachine.getState() == RobotState.NONE
+        || subStateMachine.getState() == RobotState.INTAKE_HOPPER) {
+      hasGamePieceTrigger
+          .onTrue(Commands.deferredProxy(
+              () -> subStateMachine.tryState(RobotState.HAS_GP)));
+    }
   }
 
   public Command getAutonomousCommand() {
