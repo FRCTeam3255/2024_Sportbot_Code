@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 import frc.robot.Constants;
@@ -13,11 +14,13 @@ public class EjectShooter extends Command {
   /** Creates a new EjectShooter. */
   Stager globalStager;
   Shooter globalShooter;
+  LED globalLED;
 
-  public EjectShooter(Stager passedStager, Shooter passedShooter) {
+  public EjectShooter(Stager passedStager, Shooter passedShooter, LED ejectLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
     globalShooter = passedShooter;
+    globalLED = ejectLED;
   }
 
   // Called when the command is initially scheduled.
