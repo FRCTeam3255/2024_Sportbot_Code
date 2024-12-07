@@ -55,7 +55,7 @@ public class RobotContainer {
 
     // IntakeHopper
     isGPDetectedTrigger
-        .onTrue(Commands.deferredProxy(
+        .whileTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.INTAKE_HOPPER)));
 
     // EjectShooter
@@ -80,19 +80,18 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.NONE)));
 
     // prepShooter -> hasGP
-    if (subStateMachine.getState() == RobotState.PREP_SHOOTER) {
+   
       m_driverController.btn_B
           .onTrue(Commands.deferredProxy(
               () -> subStateMachine.tryState(RobotState.HAS_GP)));
-    }
+    
 
     // hasGP
-    if (subStateMachine.getState() == RobotState.SHOOT || subStateMachine.getState() == RobotState.NONE
-        || subStateMachine.getState() == RobotState.INTAKE_HOPPER) {
+  
       hasGamePieceTrigger
-          .onTrue(Commands.deferredProxy(
+          .whileTrue(Commands.deferredProxy(
               () -> subStateMachine.tryState(RobotState.HAS_GP)));
-    }
+    
   }
 
   public Command getAutonomousCommand() {

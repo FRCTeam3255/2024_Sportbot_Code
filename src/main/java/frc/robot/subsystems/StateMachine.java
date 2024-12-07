@@ -87,16 +87,6 @@ public class StateMachine extends SubsystemBase {
             return new intakeHopper(globalStateMachine, globalHopper, globalStager, globalLED);
         }
         break;
-      case NONE:
-        switch (currentState) {
-          case EJECT_INTAKE:
-          case EJECT_SHOOTER:
-          case SHOOT:
-          case INTAKE_GROUND:
-          case INTAKE_HOPPER:
-            return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager, globalLED);
-        }
-        break;
       case PREP_SHOOTER:
         switch (currentState) {
           case HAS_GP:
@@ -107,6 +97,16 @@ public class StateMachine extends SubsystemBase {
         switch (currentState) {
           case PREP_SHOOTER:
             return new Shoot(globalStateMachine, globalStager, globalShooter, globalLED);
+        }
+        break;
+        case NONE:
+        switch (currentState) {
+          case EJECT_INTAKE:
+          case EJECT_SHOOTER:
+          case SHOOT:
+          case INTAKE_GROUND:
+          case INTAKE_HOPPER:
+            return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager, globalLED);
         }
         break;
       // default:
