@@ -17,13 +17,16 @@ public class StateMachine extends SubsystemBase {
   Intake globalIntake;
   Shooter globalShooter;
   Stager globalStager;
+  LED globalLED;
   StateMachine globalStateMachine = this;
 
-  public StateMachine(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager) {
+  public StateMachine(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager,
+      LED passedLED) {
     globalHopper = passedHopper;
     globalIntake = passedIntake;
     globalShooter = passedShooter;
     globalStager = passedStager;
+    globalLED = passedLED;
     currentState = RobotState.NONE;
   }
 
@@ -51,14 +54,14 @@ public class StateMachine extends SubsystemBase {
       case EJECT_INTAKE: // if desired state is eject intake
         switch (currentState) { // check what our current state is
           case INTAKE_GROUND: // what are we allowed to come from
-            return new EjectIntake(globalStateMachine, globalIntake);
+            return new EjectIntake(globalStateMachine, globalIntake, globalLED);
         }
         break;
       case EJECT_SHOOTER:
         switch (currentState) {
           case HAS_GP:
           case PREP_SHOOTER:
-            return new EjectShooter(globalStateMachine, globalStager, globalShooter);
+            return new EjectShooter(globalStateMachine, globalStager, globalShooter, globalLED);
         }
         break;
       case HAS_GP:
@@ -68,20 +71,20 @@ public class StateMachine extends SubsystemBase {
           case PREP_SHOOTER:
           case NONE:
 
-            return new HasGP(globalStager, globalShooter, globalStateMachine);
+            return new HasGP(globalStager, globalShooter, globalStateMachine, globalLED);
         }
         break;
       case INTAKE_GROUND: // if desired state is intake ground
         switch (currentState) { // check what our current state is
           case NONE: // what are we allowed to come from
-            return new IntakeGround(this, globalIntake, globalStager);
+            return new IntakeGround(this, globalIntake, globalStager, globalLED);
         }
         break;
       case INTAKE_HOPPER:
         switch (currentState) {
           case NONE: // is the current state NONE
           case INTAKE_GROUND: // or is the current state INTAKE_GROUND
-            return new intakeHopper(globalStateMachine, globalHopper, globalStager);
+            return new intakeHopper(globalStateMachine, globalHopper, globalStager, globalLED);
         }
         break;
       case NONE:
@@ -91,19 +94,19 @@ public class StateMachine extends SubsystemBase {
           case SHOOT:
           case INTAKE_GROUND:
           case INTAKE_HOPPER:
-            return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager);
+            return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager, globalLED);
         }
         break;
       case PREP_SHOOTER:
         switch (currentState) {
           case HAS_GP:
-            return new PrepShooter(globalStateMachine, globalShooter);
+            return new PrepShooter(globalStateMachine, globalShooter, globalLED);
         }
         break;
       case SHOOT:
         switch (currentState) {
           case PREP_SHOOTER:
-            return new Shoot(globalStateMachine, globalStager, globalShooter);
+            return new Shoot(globalStateMachine, globalStager, globalShooter, globalLED);
         }
         break;
       // default:

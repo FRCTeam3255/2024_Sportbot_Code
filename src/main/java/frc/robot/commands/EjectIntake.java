@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
 
@@ -15,11 +16,13 @@ public class EjectIntake extends Command {
 
   Intake globalIntake;
   StateMachine globalStateMachine;
+  LED globalLED;
 
-  public EjectIntake(StateMachine passedStateMachine, Intake subIntake) {
+  public EjectIntake(StateMachine passedStateMachine, Intake subIntake, LED subLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.globalIntake = subIntake;
     globalStateMachine = passedStateMachine;
+    globalLED = subLED;
     addRequirements(globalStateMachine);
 
   }
@@ -27,6 +30,7 @@ public class EjectIntake extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalLED.setLEDs(Constants.constLED.LED_EJECT_INTAKE);
     globalStateMachine.setState(RobotState.EJECT_INTAKE);
     globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_EJECT_VELOCITY);
   }

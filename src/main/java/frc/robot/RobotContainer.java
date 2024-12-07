@@ -23,7 +23,7 @@ public class RobotContainer {
   private final Hopper subHopper = new Hopper();
   private final Shooter subShooter = new Shooter();
   private final Stager subStager = new Stager();
-  private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager);
+  private final StateMachine subStateMachine = new StateMachine(subHopper, subIntake, subShooter, subStager, subLED);
 
   private final Drive com_Drive = new Drive(subDrivetrain, m_driverController.axis_RightX,
       m_driverController.axis_LeftY, m_driverController.btn_LeftBumper);

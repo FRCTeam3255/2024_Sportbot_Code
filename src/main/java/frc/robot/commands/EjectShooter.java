@@ -33,6 +33,7 @@ public class EjectShooter extends Command {
   @Override
   public void initialize() {
     globalStateMachine.setState(RobotState.EJECT_SHOOTER);
+    globalLED.setLEDs(Constants.constLED.LED_EJECT_SHOOTER);
     globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY_EJECT);
     globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY_EJECT);
   }
