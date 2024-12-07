@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.*;
+import frc.robot.commands.states.StopShooter;
 
 public class StateMachine extends SubsystemBase {
   /** Creates a new StateMachine. */
@@ -39,6 +40,7 @@ public class StateMachine extends SubsystemBase {
     NONE,
     PREP_SHOOTER,
     SHOOT,
+    STOP_SHOOTER,
   }
 
   public void setState(RobotState state) {
@@ -68,7 +70,7 @@ public class StateMachine extends SubsystemBase {
         switch (currentState) {
           case INTAKE_HOPPER:
           case SHOOT:
-          case PREP_SHOOTER:
+          case STOP_SHOOTER:
           case NONE:
 
             return new HasGP(globalStager, globalShooter, globalStateMachine, globalLED);
@@ -99,7 +101,14 @@ public class StateMachine extends SubsystemBase {
             return new Shoot(globalStateMachine, globalStager, globalShooter, globalLED);
         }
         break;
-        case NONE:
+      case STOP_SHOOTER:
+        switch (currentState) {
+          case PREP_SHOOTER:
+          return new StopShooter(globalStateMachine, globalShooter);          
+        
+        }
+        break;
+      case NONE:
         switch (currentState) {
           case EJECT_INTAKE:
           case EJECT_SHOOTER:
@@ -109,6 +118,7 @@ public class StateMachine extends SubsystemBase {
             return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager, globalLED);
         }
         break;
+        
       // default:
       // return new None(globalHopper, globalIntake, globalShooter, globalStager);
     }

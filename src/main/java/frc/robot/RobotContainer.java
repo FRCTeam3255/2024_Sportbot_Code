@@ -78,12 +78,6 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.SHOOT)))
         .onFalse(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.NONE)));
-
-    // prepShooter -> hasGP
-   
-      m_driverController.btn_B
-          .onTrue(Commands.deferredProxy(
-              () -> subStateMachine.tryState(RobotState.HAS_GP)));
     
 
     // hasGP
@@ -91,6 +85,11 @@ public class RobotContainer {
       hasGamePieceTrigger
           .whileTrue(Commands.deferredProxy(
               () -> subStateMachine.tryState(RobotState.HAS_GP)));
+
+    //StopShooter
+    m_driverController.btn_X
+    .onTrue(Commands.deferredProxy(
+() -> subStateMachine.tryState(RobotState.STOP_SHOOTER) ));
     
   }
 
