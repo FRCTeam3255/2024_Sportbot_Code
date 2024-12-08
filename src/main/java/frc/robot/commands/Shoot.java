@@ -27,16 +27,18 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
-    globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
-    if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)
-        && (globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
-      globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
-      globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
-      globalLED.setLEDs(constLED.LED_SHOOTING);
-    } else {
-      globalStager.setStagerMotorVelocityNuetralOutput();
-    }
+    // globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
+    // globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
+    // if ((globalShooter.getPropelMotorVelocity() >=
+    // Constants.constShooter.PROPEL_MOTOR_VELOCITY)
+    // && (globalShooter.getSpiralMotorVelocity() >=
+    // Constants.constShooter.SPIRAL_MOTOR_VELOCITY)) {
+    globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
+    globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
+    globalLED.setLEDs(constLED.LED_SHOOTING);
+    // } else {
+    // globalStager.setStagerMotorVelocityNuetralOutput();
+    // }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
