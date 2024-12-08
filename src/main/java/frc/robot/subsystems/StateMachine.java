@@ -14,6 +14,7 @@ import frc.robot.commands.states.StopShooter;
 public class StateMachine extends SubsystemBase {
   /** Creates a new StateMachine. */
   public static RobotState currentState;
+  public static RobotState globalDesiredState;
   Hopper globalHopper;
   Intake globalIntake;
   Shooter globalShooter;
@@ -29,6 +30,7 @@ public class StateMachine extends SubsystemBase {
     globalStager = passedStager;
     globalLED = passedLED;
     currentState = RobotState.NONE;
+    globalDesiredState = currentState;
   }
 
   public enum RobotState {
@@ -51,7 +53,12 @@ public class StateMachine extends SubsystemBase {
     return currentState;
   }
 
+  public boolean desiredIsCurrent() {
+    return globalDesiredState == currentState;
+  }
+
   public Command tryState(RobotState desiredState) {
+    globalDesiredState = desiredState;
     switch (desiredState) { // check what our desired state is
       case EJECT_INTAKE: // if desired state is eject intake
         switch (currentState) { // check what our current state is
@@ -104,8 +111,8 @@ public class StateMachine extends SubsystemBase {
       case STOP_SHOOTER:
         switch (currentState) {
           case PREP_SHOOTER:
-          return new StopShooter(globalStateMachine, globalShooter);          
-        
+            return new StopShooter(globalStateMachine, globalShooter);
+
         }
         break;
       case NONE:
@@ -118,7 +125,7 @@ public class StateMachine extends SubsystemBase {
             return new none(globalStateMachine, globalHopper, globalIntake, globalShooter, globalStager, globalLED);
         }
         break;
-        
+
       // default:
       // return new None(globalHopper, globalIntake, globalShooter, globalStager);
     }

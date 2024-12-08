@@ -31,6 +31,7 @@ public class RobotContainer {
   private final Trigger hasGamePieceTrigger = new Trigger(subStager::getHasGP);
   private final Trigger isGPDetectedTrigger = new Trigger(subHopper::getGamePieceHopper);
 
+  
   // Drive
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -46,7 +47,7 @@ public class RobotContainer {
             () -> subStateMachine.tryState(RobotState.INTAKE_GROUND)))
         .onFalse(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.NONE))
-            .unless(isGPDetectedTrigger));
+            .onlyIf(subStateMachine::desiredIsCurrent));
 
     // PrepShooter
     m_driverController.btn_A
@@ -63,34 +64,33 @@ public class RobotContainer {
         .whileTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.EJECT_SHOOTER)))
         .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.NONE)));
+            () -> subStateMachine.tryState(RobotState.NONE)).onlyIf(subStateMachine::desiredIsCurrent));
 
     // EjectIntake
     m_driverController.btn_LeftBumper
         .whileTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.EJECT_INTAKE)))
         .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.NONE)));
+            () -> subStateMachine.tryState(RobotState.NONE)).onlyIf(subStateMachine::desiredIsCurrent));
 
     // Shoot
     m_driverController.btn_RightTrigger
         .onTrue(Commands.deferredProxy(
             () -> subStateMachine.tryState(RobotState.SHOOT)))
         .onFalse(Commands.deferredProxy(
-            () -> subStateMachine.tryState(RobotState.NONE)));
-    
+            () -> subStateMachine.tryState(RobotState.NONE)).onlyIf(subStateMachine::desiredIsCurrent) );
 
     // hasGP
-  
-      hasGamePieceTrigger
-          .whileTrue(Commands.deferredProxy(
-              () -> subStateMachine.tryState(RobotState.HAS_GP)));
 
-    //StopShooter
+    hasGamePieceTrigger
+        .whileTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.HAS_GP)));
+
+    // StopShooter
     m_driverController.btn_X
-    .onTrue(Commands.deferredProxy(
-() -> subStateMachine.tryState(RobotState.STOP_SHOOTER) ));
-    
+        .onTrue(Commands.deferredProxy(
+            () -> subStateMachine.tryState(RobotState.STOP_SHOOTER)));
+
   }
 
   public Command getAutonomousCommand() {
