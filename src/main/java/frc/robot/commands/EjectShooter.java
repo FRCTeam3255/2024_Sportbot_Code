@@ -44,7 +44,6 @@ public class EjectShooter extends Command {
     if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY_EJECT_REQUIREMENT)
         && globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY_EJECT_REQUIREMENT) {
       globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
-      globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
     } else {
       globalStager.setStagerMotorVelocityNuetralOutput();
     }

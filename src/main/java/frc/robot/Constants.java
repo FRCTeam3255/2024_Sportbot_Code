@@ -51,6 +51,5 @@ public class Constants {
 
   public static class constStager {
     public static final double STAGER_MOTOR_VELOCITY = 0.3;
-    public static final double TOP_STAGER_MOTOR_VELOCITY = 0.3;
   }
 }
