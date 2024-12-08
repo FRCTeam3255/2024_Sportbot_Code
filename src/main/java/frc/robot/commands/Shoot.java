@@ -10,15 +10,20 @@ import frc.robot.Constants.constLED;
 import frc.robot.subsystems.LED;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.StateMachine.RobotState;
+import frc.robot.subsystems.StateMachine;
 
 public class Shoot extends Command {
   /** Creates a new Shoot. */
+  StateMachine globalStateMachine;
   Stager globalStager;
   Shooter globalShooter;
   LED globalLED;
 
-  public Shoot(Stager passedStager, Shooter passedShooter, LED shootLED) {
+  public Shoot(StateMachine passedStateMachine, Stager passedStager, Shooter passedShooter, LED shootLED) {
     // Use addRequirements() here to declare subsystem dependencies.
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
     globalStager = passedStager;
     globalShooter = passedShooter;
     globalLED = shootLED;
@@ -27,6 +32,7 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.SHOOT);
     globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY);
     globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY);
     if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY)

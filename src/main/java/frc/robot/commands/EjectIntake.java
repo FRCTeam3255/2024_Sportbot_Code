@@ -5,41 +5,50 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.constLED;
-import frc.robot.subsystems.Hopper;
+import frc.robot.Constants;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
-public class FullHopper extends Command {
-  /** Creates a new FullHopper. */
-  Hopper subHopper;
-  LED subLED;
+public class EjectIntake extends Command {
+  /** Creates a new EjectGP. */
 
-  public FullHopper(Hopper subHopper, LED fullLED) {
+  Intake globalIntake;
+  StateMachine globalStateMachine;
+  LED globalLED;
+
+  public EjectIntake(StateMachine passedStateMachine, Intake subIntake, LED subLED) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.subHopper = subHopper;
-    subLED = fullLED;
+    this.globalIntake = subIntake;
+    globalStateMachine = passedStateMachine;
+    globalLED = subLED;
+    addRequirements(globalStateMachine);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    subLED.setLEDs(constLED.LED_FULL_HOPPER);
+    globalLED.setLEDs(Constants.constLED.LED_EJECT_INTAKE);
+    globalStateMachine.setState(RobotState.EJECT_INTAKE);
+    globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_EJECT_VELOCITY);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    globalIntake.setIntakeNuetralOutput();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

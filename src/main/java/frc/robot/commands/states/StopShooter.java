@@ -2,44 +2,41 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
-import frc.robot.Constants.constLED;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LED;
-
-public class EjectGP extends Command {
-  /** Creates a new EjectGP. */
-  LED globalLED;
-  Intake globalIntake;
-
-  public EjectGP(Intake subIntake, LED ejectLED) {
+public class StopShooter extends Command {
+  /** Creates a new StopShooter. */
+   Shooter globalShooter;
+  StateMachine globalStateMachine;
+  public StopShooter(StateMachine passedStateMachine, Shooter passedShooter) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.globalIntake = subIntake;
-    globalLED = ejectLED;
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
+    globalShooter = passedShooter;
+
+  
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    globalIntake.setIntakeVelocity(Constants.constIntake.INTAKE_EJECT_VELOCITY);
-    globalLED.setLEDs(constLED.LED_EJECTGP);
+
+    globalStateMachine.setState(RobotState.STOP_SHOOTER);
+    globalShooter.setShooterNuetralOutput();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-
-    globalIntake.setIntakeNuetralOutput();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

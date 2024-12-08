@@ -10,19 +10,25 @@ import frc.robot.Constants.constLED;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Stager;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class intakeHopper extends Command {
 
   Hopper subHopper;
   Stager subStager;
+  StateMachine globalStateMachine;
   LED subLED;
 
   /** Creates a new intakeHopper. */
-  public intakeHopper(Hopper subHopper, Stager subStager, LED intakeHopperLED) {
+  public intakeHopper(StateMachine subStateMachine, Hopper subHopper, Stager subStager, LED intakeHopperLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.subHopper = subHopper;
     this.subStager = subStager;
     subLED = intakeHopperLED;
+    globalStateMachine = subStateMachine;
+    addRequirements(globalStateMachine);
+
   }
 
   // Called when the command is initially scheduled.
@@ -36,6 +42,7 @@ public class intakeHopper extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    globalStateMachine.setState(RobotState.INTAKE_HOPPER);
     if (!subStager.getHasGP()) {
       subHopper.setOrientationMotorSpeed(Constants.constHopper.HOPPER_ORIENTATION_SPEED);
     } else {

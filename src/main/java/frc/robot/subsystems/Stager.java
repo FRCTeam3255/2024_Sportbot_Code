@@ -45,6 +45,6 @@ public class Stager extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("hasGP", !getHasGP());
+    SmartDashboard.putBoolean("hasGP", getHasGP());
   }
 }
