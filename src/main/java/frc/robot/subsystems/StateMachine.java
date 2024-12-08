@@ -76,7 +76,6 @@ public class StateMachine extends SubsystemBase {
       case HAS_GP:
         switch (currentState) {
           case INTAKE_HOPPER:
-          case SHOOT:
           case STOP_SHOOTER:
           case NONE:
 
