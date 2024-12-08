@@ -9,23 +9,31 @@ import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
 import frc.robot.Constants;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class EjectShooter extends Command {
   /** Creates a new EjectShooter. */
   Stager globalStager;
   Shooter globalShooter;
+  StateMachine globalStateMachine;
   LED globalLED;
 
-  public EjectShooter(Stager passedStager, Shooter passedShooter, LED ejectLED) {
+  public EjectShooter(StateMachine passedStateMachine, Stager passedStager, Shooter passedShooter, LED ejectLED) {
     // Use addRequirements() here to declare subsystem dependencies.
     globalStager = passedStager;
     globalShooter = passedShooter;
     globalLED = ejectLED;
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.EJECT_SHOOTER);
+    globalLED.setLEDs(Constants.constLED.LED_EJECT_SHOOTER);
     globalShooter.setPropelMotorVelocity(Constants.constShooter.PROPEL_MOTOR_VELOCITY_EJECT);
     globalShooter.setSpiralMotorVelocity(Constants.constShooter.SPIRAL_MOTOR_VELOCITY_EJECT);
   }
@@ -36,7 +44,6 @@ public class EjectShooter extends Command {
     if ((globalShooter.getPropelMotorVelocity() >= Constants.constShooter.PROPEL_MOTOR_VELOCITY_EJECT_REQUIREMENT)
         && globalShooter.getSpiralMotorVelocity() >= Constants.constShooter.SPIRAL_MOTOR_VELOCITY_EJECT_REQUIREMENT) {
       globalStager.setStagerMotorVelocity(Constants.constStager.STAGER_MOTOR_VELOCITY);
-      globalStager.setTopStagerMotorVelocity(Constants.constStager.TOP_STAGER_MOTOR_VELOCITY);
     } else {
       globalStager.setStagerMotorVelocityNuetralOutput();
     }

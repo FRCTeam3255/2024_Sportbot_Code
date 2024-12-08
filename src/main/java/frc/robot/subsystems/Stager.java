@@ -16,12 +16,10 @@ import frc.robot.RobotMap;
 public class Stager extends SubsystemBase {
   /** Creates a new Stager. */
   TalonSRX stagerMotor;
-  TalonSRX topStagerMotor;
   DigitalInput hasGP;
 
   public Stager() {
     stagerMotor = new TalonSRX(RobotMap.mapStager.STAGER_MOTOR_CAN);
-    topStagerMotor = new TalonSRX(RobotMap.mapStager.TOP_STAGER_MOTOR_CAN);
     hasGP = new DigitalInput(RobotMap.mapStager.HAS_GP_DIO);
   }
 
@@ -30,12 +28,10 @@ public class Stager extends SubsystemBase {
   }
 
   public void setTopStagerMotorVelocity(double velocity) {
-    topStagerMotor.set(ControlMode.PercentOutput, velocity);
   }
 
   public void setStagerMotorVelocityNuetralOutput() {
     stagerMotor.set(ControlMode.PercentOutput, 0);
-    topStagerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean getHasGP() {
@@ -45,6 +41,6 @@ public class Stager extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("hasGP", !getHasGP());
+    SmartDashboard.putBoolean("hasGP", getHasGP());
   }
 }

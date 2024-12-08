@@ -11,17 +11,23 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class none extends Command {
   Hopper subHopper;
   Intake subIntake;
   Shooter subShooter;
   Stager subStager;
+  StateMachine globalStateMachine;
   LED subLED;
 
   /** Creates a new none. */
-  public none(Hopper passedHopper, Intake passedIntake, Shooter passedShooter, Stager passedStager, LED noneLED) {
+  public none(StateMachine passedStateMachine, Hopper passedHopper, Intake passedIntake, Shooter passedShooter,
+      Stager passedStager, LED noneLED) {
     // Use addRequirements() here to declare subsystem dependencies.
+    globalStateMachine = passedStateMachine;
+    addRequirements(globalStateMachine);
     subHopper = passedHopper;
     subIntake = passedIntake;
     subShooter = passedShooter;
@@ -32,6 +38,7 @@ public class none extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    globalStateMachine.setState(RobotState.NONE);
     subHopper.setOrientationMotorSpeed(0);
     subIntake.setIntakeVelocity(0);
     subStager.setStagerMotorVelocity(0);

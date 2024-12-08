@@ -24,7 +24,9 @@ public class Constants {
     public static final int[] LED_INTAKE_GROUND = { 187, 1, 249 };
     public static final int[] LED_HASGP = { 249, 1, 109 };
     public static final int[] LED_FULL_HOPPER = { 255, 255, 255 };
-    public static final int[] LED_EJECTGP = { 3, 242, 230 };
+    public static final int[] LED_EJECT_INTAKE = { 3, 242, 230 };
+    public static final int[] LED_EJECT_SHOOTER = { 242, 3, 230 };
+
     public static final int[] LED_DRIVE = { 109, 11, 140 };
 
   }
@@ -49,6 +51,5 @@ public class Constants {
 
   public static class constStager {
     public static final double STAGER_MOTOR_VELOCITY = 0.3;
-    public static final double TOP_STAGER_MOTOR_VELOCITY = 0.3;
   }
 }
