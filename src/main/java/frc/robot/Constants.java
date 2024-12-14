@@ -40,7 +40,7 @@ public class Constants {
 
   public static class constShooter {
     public static final double PROPEL_MOTOR_VELOCITY = -0.8;
-    public static final double SPIRAL_MOTOR_VELOCITY = 0.8;
+    public static final double SPIRAL_MOTOR_VELOCITY = 0.9;
     public static final double PROPEL_MOTOR_VELOCITY_EJECT = 0.3;
     public static final double SPIRAL_MOTOR_VELOCITY_EJECT = 0.3;
     public static final double PROPEL_MOTOR_VELOCITY_EJECT_REQUIREMENT = 0.2;
