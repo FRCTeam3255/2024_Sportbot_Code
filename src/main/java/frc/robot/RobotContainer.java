@@ -16,6 +16,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Stager;
+import frc.robot.commands.EjectGP;
 
 public class RobotContainer {
   private final SN_XboxController m_driverController = new SN_XboxController(RobotMap.mapControllers.DRIVER_USB);
@@ -32,6 +33,7 @@ public class RobotContainer {
   private final Shoot com_Shoot = new Shoot(subStager, subShooter, subLED);
   private final intakeHopper com_IntakeHopper = new intakeHopper(subHopper, subStager, subLED);
   private final EjectShooter com_EjectShooter = new EjectShooter(subStager, subShooter, subLED);
+  private final EjectGP com_EjectGP = new EjectGP(subIntake, subLED);
 
   public RobotContainer() {
     subDrivetrain.setDefaultCommand(com_Drive);
@@ -42,10 +44,11 @@ public class RobotContainer {
 
   private void configureBindings() {
     m_driverController.btn_LeftTrigger.whileTrue(com_IntakeGround);
-    m_driverController.btn_A.onTrue(com_PrepShooter);
+    m_driverController.btn_A.whileTrue(com_PrepShooter);
     m_driverController.btn_B.whileTrue(com_IntakeHopper);
-    m_driverController.btn_LeftBumper.whileTrue(com_EjectShooter);
-    m_driverController.btn_RightTrigger.onTrue(com_Shoot);
+    m_driverController.btn_RightBumper.whileTrue(com_EjectShooter);
+    m_driverController.btn_RightTrigger.whileTrue(com_Shoot);
+    m_driverController.btn_LeftBumper.whileTrue(com_EjectGP);
 
   }
 
